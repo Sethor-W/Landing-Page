@@ -5,18 +5,113 @@
 :root {
   --letter-principal-color: rgb(255, 255, 255);
   --letter-sub-color: rgb(155, 155, 155);
-  --background-principal-rgb: rgb(0, 0, 0);
+  --background-principal-rgb: rgb(14, 24, 43);
   --background-secundary-rgb: rgb(20, 20, 20);
+
+  --color-logo-1: rgba(204, 119, 237, 1);
+  --color-logo-2: rgba(96, 214, 218, 1);
+  --color-logo-2-50: rgba(96, 214, 218, .5);
+  --color-logo-3: rgba(28, 95, 194, 1);
 }
 
-body {
+* {
+  color: var(--letter-principal-color);
+}
+
+html {
+  background-color: var(--background-principal-rgb);
+
+}
+
+footer, .body {
   color: var(--letter-principal-color);
   margin: 0;
   padding: 0;
-  background-color: var(--background-principal-rgb);
   padding: 1.5rem;
 }
+footer, nav{
+  padding: 0 3rem;
+}
+section.body {
+  padding: 5rem 3rem;
+}
+.section2 {
+  background: rgba(35, 61, 101, 0.5);
+}
+
+nav {
+  box-shadow: 0 1px 5px rgb(0, 0, 0, .5);
+}
+
+.bg-principal {
+  background-color: var(--background-principal-rgb);
+}
+
+
+::-webkit-scrollbar{
+  width: 7.5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4141418e;
+  border-radius: 12px;
+}
+
+.scroll-carousel::-webkit-scrollbar {
+  height: 5px; /* Altura de la barra de desplazamiento horizontal */
+}
+.scroll-carousel::-webkit-scrollbar-thumb {
+  background-color: #4141418e;
+  border-radius: 12px;
+  height: 2px;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
+}
+
+input {
+  border-radius: 12px !important;
+  margin: 1rem 0;
+}
+
+.image-drop-shadow {
+  filter: drop-shadow(1px 2px 5px var(--color-logo-2-50));
+}
+
+
+
+
+
+@media (min-width: 640px) {
+  footer, nav{
+    padding: 0 3rem !important;
+  }
+  section.body{
+    padding: 5rem 3rem;
+  }
+}
+@media (min-width: 768px) {
+  footer, nav{
+    padding: 0 5rem !important;
+  }
+  section.body{
+    padding: 5rem 5rem;
+  }
+}
+@media (min-width: 1024px) {
+  footer, nav{
+    padding: 2rem 10rem !important;
+  }
+  section.body{
+    padding: 5rem 10rem;
+  }
+}
+@media (min-width: 1280px) {
+  footer, nav{
+    padding: 0 10rem !important;
+  }
+  section.body{
+   padding: 5rem 10rem;
+  }
 }
