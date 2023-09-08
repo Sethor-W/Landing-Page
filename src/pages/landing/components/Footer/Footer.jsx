@@ -3,7 +3,7 @@ import ButtonSocial from '../ButtonSocial/ButtonSocial'
 
 export default function Footer() {
   return (
-    <footer id='contact' className='flex flex-col gap-10'>
+    <footer id='contact' className='section2 flex flex-col gap-10'>
         {/* Social Icons */}
         <div class="mb-6 mt-20 flex justify-center">
           <ButtonSocial>
@@ -38,7 +38,14 @@ export default function Footer() {
           </ButtonSocial> */}
         </div>
         <div className='grid md:grid-cols-2 items-center justify-between gap-6'>
-          <p className='text-sm text-center md:w-[20rem]'>Escribenos si tienes alguna duda o si quieres formar parte de nuestro equipo</p>
+          <div className='flex flex-col '>
+            <img
+              className='w-[20rem] mb-5'
+              src="/logo/Logotipo.svg"
+              alt="Sethor"
+            />
+            <p className='text-sm text-center md:w-[20rem]'>Escribenos si tienes alguna duda o si quieres formar parte de nuestro equipo</p>
+          </div>
           <div className='flex flex-row justify-around text-sm'>
             <div>
               <h5>Correo:</h5>
