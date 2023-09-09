@@ -3,7 +3,7 @@ import ButtonSocial from '../ButtonSocial/ButtonSocial'
 
 export default function Footer() {
   return (
-    <footer id='contact' className='section2 flex flex-col gap-10'>
+    <footer id='contact' className='footer bg-principals section1 flex flex-col gap-10'>
         {/* Social Icons */}
         <div class="mb-6 mt-20 flex justify-center">
           <ButtonSocial>
@@ -57,8 +57,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <hr className='text-gray-600'/>
         <div 
-          className="w-full p-4 text-center"
+          className="w-full p-4 pt-0 text-center"
         >© 2023 Copyright: 
         {" "}<a class="text-white" href="#">Sethor</a>
         </div>
