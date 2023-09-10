@@ -10,7 +10,7 @@ export default function NavBar() {
 
   return (
     <>
-        <nav class="bg-principal fixed w-full z-20 top-0 left-0">
+        <nav class="bg-principals absolute w-full z-20 top-0 left-0 rounded-2xl mt-4">
             <div class="max-w-screen-xl flex flex-wrap md:flex-nowrap md:gap-14 items-center justify-between mx-auto py-4">
                 <a href="#" class="flex items-center">
                     <img src="/logo/Isotipo.svg" class="h-8 mr-3" alt="Flowbite Logo"/>
