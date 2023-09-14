@@ -51,14 +51,14 @@ export default function Form() {
         onSubmit={handleSubmit}
         className='border-2 rounded-lg p-8'
     >
-        {error && <p className='text-sm text-red-600'>{error}</p>}
+        {error && <p className='text-base text-red-600'>{error}</p>}
 
         <div className='grid mb-[2rem] md:grid-cols-s2 md:gaps-20 md:items-sbaseline'>
             <div>
                 <div>
-                    <label htmlFor="name" className='text-sm'>Nombre</label>
+                    <label htmlFor="name" className='text-base'>Nombre</label>
                     <input
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-base focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                         type="text"
                         name='name'
                         id='name'
@@ -66,9 +66,9 @@ export default function Form() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email" className='text-sm'>Email</label>
+                    <label htmlFor="email" className='text-base'>Email</label>
                     <input
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-base focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                         type="email"
                         name='email'
                         id='email'
@@ -77,9 +77,9 @@ export default function Form() {
                 </div>
             </div>
             <div>
-                <label htmlFor="suggestion" className='text-sm'>Sugerencia</label>
+                <label htmlFor="suggestion" className='text-base'>Sugerencia</label>
                 <textarea
-                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-base focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                     rows="5"
                     name='suggestion'
                     id='suggestion'
@@ -88,7 +88,7 @@ export default function Form() {
             </div>
         </div>
         <button 
-            className="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="submit"
         >Unirse</button>
     </form>

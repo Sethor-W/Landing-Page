@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import NavBar from "./components/NavBar/NavBar";
-import FeatureCard from "./components/FeatureCard/FeatureCard";
-import Carousel from "./components/Carousel/Carousel";
-import Footer from "./components/Footer/Footer";
-import Form from "./components/Form/Form";
-import Head from "next/head";
-import Popup from "./components/Popup/Popup";
-import Label from "./components/Label/Label";
-import Textarea from "./components/Textarea/Textarea";
+import Image from 'next/image'
+import { Inter } from 'next/font/google'
+import Head from 'next/head'
+import NavBar from './landing/components/NavBar/NavBar'
+import Popup from './landing/components/Popup/Popup'
+import Textarea from './landing/components/Textarea/Textarea'
+import Label from './landing/components/Label/Label'
+import { useState } from 'react'
+import Footer from './landing/components/Footer/Footer'
+import Link from 'next/link'
 
-export default function Landing() {
+const inter = Inter({ subsets: ['latin'] })
+
+export default function Home() {
+
   const [userActive, setUserActive] = useState(true);
 
   const countries = [
@@ -238,7 +241,7 @@ export default function Landing() {
                   Te damos la bienvenida a tu proxima aplicación hibrida entre una
                   cartera digital y un comercio electronico
                 </h1>
-                <a
+                <Link
                   className="cta py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-white focus:outline-none focus:ring-2 transition-all text-base bg-gradient-to-br"
                   href="#features"
                 >
@@ -247,7 +250,7 @@ export default function Landing() {
                     <path d="M1,5 L11,5"></path>
                     <polyline points="8 1 12 5 8 9"></polyline>
                   </svg>
-                </a>
+                </Link>
               </article>
               <img
                 className="mobile image-drop-shadow rounded-xl md:ax-w-[40rem]"
@@ -290,68 +293,6 @@ export default function Landing() {
               ></video>
             </section>
         </div>
-
-        {/* <section className='body section2 grid-rows-3 text-2xl mt-16 text-center flex flex-col gap-4 '>
-            <h1>Buscamos centralizar la demanda de los metodos de pagos seguros y ofrecerte una experiencia en compra en linea comoda y confiable</h1>
-            <p className='text-base'>Todo esto sin la necesidad de compartir tus datos generales a la hora de usar una de nuestras herramientas</p>
-          </section> */}
-        {/* <section id="features" className='body grid-rows-3 text-2xl mt-16 flex flex-col gap-4 '>
-            <h1>Caracteristicas</h1>
-            <div className='flex flex-row justify-center items-center gap-10'>
-              <p className={`text-base cursor-pointer ${userActive && 'underline underline-offset-8'}`} onClick={handleActiveUser}>User</p>
-              <p className={`text-base cursor-pointer ${!userActive && 'underline underline-offset-8'}`} onClick={handleActiveBusiness}>Negocio</p>
-            </div>
-            {userActive &&
-              <Carousel>
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Pago con Huella'}
-                  title={'¿Cansado de cargar tu tarjeta?'}
-                  description={'Paga de forma segura con tu huella dactilar'}
-                />
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Sin conexion'}
-                  title={'¿No tienes acceso a internet?'}
-                  description={'No necesitas estar conectado a internet'}
-                />
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Pago con Huella'}
-                  title={'¿Cansado de cargar tarjetas?'}
-                  description={'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus sunt quo, nisi aliquid, odio quia, reprehenderit veniam velit aliquam voluptatibus sapiente minus ipsam architecto. Quasi culpa impedit autem tempora iste.'}
-                />
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Pago con Huella'}
-                  title={'¿Cansado de cargar tarjetas?'}
-                  description={'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus sunt quo, nisi aliquid, odio quia, reprehenderit veniam velit aliquam voluptatibus sapiente minus ipsam architecto. Quasi culpa impedit autem tempora iste.'}
-                />
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Pago con Huella'}
-                  title={'¿Cansado de cargar tarjetas?'}
-                  description={'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus sunt quo, nisi aliquid, odio quia, reprehenderit veniam velit aliquam voluptatibus sapiente minus ipsam architecto. Quasi culpa impedit autem tempora iste.'}
-                />
-              </Carousel>
-            }
-            {!userActive &&
-              <Carousel>
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Pago con Huella Bussines'}
-                  title={'¿Cansado de cargar tarjetas?'}
-                  description={'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus sunt quo, nisi aliquid, odio quia, reprehenderit veniam velit aliquam voluptatibus sapiente minus ipsam architecto. Quasi culpa impedit autem tempora iste.'}
-                />
-                <FeatureCard
-                  img={'https://images.pexels.com/photos/7046704/pexels-photo-7046704.jpeg?auto=compress&cs=tinysrgb&w=600'}
-                  slogan={'Pago con Huella Bussines'}
-                  title={'¿Cansado de cargar tarjetas?'}
-                  description={'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus sunt quo, nisi aliquid, odio quia, reprehenderit veniam velit aliquam voluptatibus sapiente minus ipsam architecto. Quasi culpa impedit autem tempora iste.'}
-                />
-              </Carousel>
-            }
-          </section> */}
 
         <div className="bg-[url(/img/bg-section-p.jfif)] bg-no-repeat bg-cover bg-right-bottom">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -565,5 +506,5 @@ export default function Landing() {
       </main>
       <Footer />
     </div>
-  );
+  )
 }

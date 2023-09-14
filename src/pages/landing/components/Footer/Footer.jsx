@@ -44,9 +44,9 @@ export default function Footer() {
               src="/logo/Logotipo.svg"
               alt="Sethor"
             />
-            <p className='text-sm text-center md:w-[20rem]'>Escribenos si tienes alguna duda o si quieres formar parte de nuestro equipo</p>
+            <p className='text-base text-center md:w-[20rem]'>Escribenos si tienes alguna duda o si quieres formar parte de nuestro equipo</p>
           </div>
-          <div className='flex flex-row justify-around text-sm'>
+          <div className='flex flex-row justify-around text-base'>
             <div>
               <h5>Correo:</h5>
               <p>info@sethor.com</p>
