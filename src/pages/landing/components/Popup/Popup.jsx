@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function Popup({children, nameButton}) {
 
-    const [activePopup, setActivePopup] = useState(false);
+    const [activePopup, setActivePopup] = useState(true);
 
     const handleActivePopup = ()=>{
         setActivePopup(true)

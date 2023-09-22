@@ -8,7 +8,7 @@ export default function Textarea({name, id, rows='', cols=''}) {
         id={id}
         rows={rows}
         cols={cols}
-        required
+        // required
     ></textarea>
   )
 }
