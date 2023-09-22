@@ -12,6 +12,32 @@ import Form from './landing/components/Form/Form'
 
 const inter = Inter({ subsets: ['latin'] })
 
+
+const TEXTS = {
+  Slide1: {
+    t1: "Bienvenido a Sethor",
+    t2: "Donde pagar con tu rostro o tu huella en cualquier lugar y momento ya no sera cosa del futuro",
+  },
+  Slide2:{
+    title: "Tu Futura Aplicación Híbrida: Sin Preocupaciones de Pago",
+    description: [
+      "Imagina una aplicación que fusiona lo mejor de una billetera digital y el comercio en línea.",
+      "Con nosotros, nunca más tendrás que agregar métodos de pago o preocuparte por no tener saldo con que pagar."
+    ],
+  },
+  Slide3: {
+    title: "¡Unete ya a nuestra comunidad y obtén recompensas exclusivas el dia de lanzamiento!",
+    TextArray: [
+      "Completa simplemente el formulario que se encuentra a continuación, y estarás inscrito en nuestra lista de espera. Al inscribirte, serás recompensado con acceso anticipado a nuestra aplicación, además de regalos, puntos y otras sorpresas.",
+      "No dejes escapar la oportunidad de unirte a una nueva era en la que tu rostro es suficiente para pagar y tus huellas permiten transferencias rápidas y seguras. ¡Inscríbete ahora y sé parte de esta emocionante revolución!"
+    ],
+    message: "Cuando llegue el momento de pagar, es posible que olvides tu cartera, efectivo o incluso tu celular, pero lo que nunca debes olvidar es que con nosotros, solo necesitas a ti mismo para realizar el pago.",
+    // Slide3Message: "Recuerda que a la hora de pagar se te puede quedar la cartera, el efectivo o incluso tu celular, pero lo que nunca dejaras en casa sera a ti mismo.",
+  }
+  
+};
+
+
 export default function Home() {
 
   const [userActive, setUserActive] = useState(true);
@@ -42,8 +68,12 @@ export default function Home() {
             <div className="mt-20 text-2xl text-center md:text-left md:text-4xl grid grid-rows-1 md:grid-cols-2 justify-center items-center gap-4">
               <article className="">
                 <h1 className="mb-10 title">
-                  Te damos la bienvenida a tu proxima aplicación hibrida entre una
-                  cartera digital y un comercio electronico
+                  <span className='text-5xl'>
+                    {TEXTS.Slide1.t1}
+                  </span>
+                  <br />
+                  <br />
+                  {TEXTS.Slide1.t2}
                 </h1>
                 <Link
                   className="cta py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-white focus:outline-none focus:ring-2 transition-all text-base bg-gradient-to-br"
@@ -83,10 +113,14 @@ export default function Home() {
             >
               <div className="w-[80%] md:w-[70%]">
                 <h1 className="text-gray-900 font-bold mb-4 text-2xl md:text-4xl md:mb-10">
-                  Buscamos centralizar la demanda de los metodos de pagos seguros y  ofrecerte una experiencia en compra en linea  comoda y confiable
+                  {TEXTS.Slide2.title}
                 </h1>
                 <p className="text-gray-900 mb-4 text-base md:text-lg md:mb-10">
-                  Todo esto sin la necesidad de compartir tus datos generales a la hora de usar una de nuestras herramientas
+                  {TEXTS.Slide2.description[0]}
+                  <br />
+                  {TEXTS.Slide2.description[1]}
+
+                  {/* Todo esto sin la necesidad de compartir tus datos generales a la hora de usar una de nuestras herramientas */}
                 </p>
               </div>
               <video
@@ -113,27 +147,15 @@ export default function Home() {
             <div className="grid md:grid-cols-2 md:gap-10 justify-center items-center">
               <div className="flex flex-col gap-8 mb-10">
                 <h1 className="title text-2xl md:text-4xl">
-                  ¿Te interesa formar parte de nuestra comunidad y obtener
-                  bonificaciónes el dia de lanzamiento?
+                  {TEXTS.Slide3.title}
                 </h1>
-                <p className="text-base font-semibold">
-                  ¡Si es asi, es tu dia de suerte ya que está es tu oportunidad
-                  de ser una de las personas aseguradas que tendran acceso
-                  premium a la aplicación el dia de su lanzamiento y serán
-                  premiadas con beneficios especiales!
-                </p>
                 <p className="text-base">
-                  Para esto solo tendras que llenar el formulario para saber
-                  aquellas cosas que te gustarian que esten en nuestra app o
-                  aquellas cosas que quiseras que no esten como por ejemplo
-                  ofrecer una baja tarifa de comisión para envios
-                  internacionales. Al finalizar, ya estaras en nuestra lista de
-                  espera para ser una de las primeras personas en utilizarnos y
-                  en recompensa se te facilitara un codigo con el cual se te
-                  garantizara a la hora de registrate por primera vez en nuestra
-                  innovadora aplicación, ventajas que no obtendrán otras
-                  personas que no esten en la lista de espera.
+                  {TEXTS.Slide3.TextArray[0]}
+                  <br />
+                  <br />
+                  {TEXTS.Slide3.TextArray[1]}
                 </p>
+                
               </div>
               <Popup
                 nameButton={'Formar parte de Sethor'}
@@ -152,8 +174,9 @@ export default function Home() {
               </Popup>
             </div>
             <p className="text-base mt-10">
-              Con Sethor dejaras atras el estar saliendo de una aplicación a
-              otra para realizar la acción que quieres
+              {TEXTS.Slide3.message}
+              {/* Con Sethor dejaras atras el estar saliendo de una aplicación a
+              otra para realizar la acción que quieres */}
             </p>
           </section>
         </div>
