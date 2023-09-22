@@ -13,7 +13,7 @@ export default function Popup({children, nameButton}) {
 
   return (
     <div>
-        <button onClick={handleActivePopup} class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-auto" type="button">
+        <button onClick={handleActivePopup} class="block text-white hover:text-violet-700 bg-violet-700 hover:bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-violet-g00 dark:hover:bg-white dark:focus:ring-black mx-auto" type="button">
             {nameButton}
         </button>
         <div id="authentication-modal" tabindex="-1" aria-hidden="false" class={`fixed top-0 left-0 right-0 z-50 ${!activePopup && 'hidden'} w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full bg-black/[.5]`}>
