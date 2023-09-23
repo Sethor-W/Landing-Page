@@ -269,17 +269,17 @@ export default function Form() {
             }
 
             // Verifica si el usuario ya existe en la colección
-            // const userQuery = query(
-            //     collection(db, "user_wait_list"),
-            //     where("email", "==", email)
-            // );
-            // const querySnapshot = await getDocs(userQuery);
+            const userQuery = query(
+                collection(db, "user_wait_list"),
+                where("email", "==", email)
+            );
+            const querySnapshot = await getDocs(userQuery);
 
-            // if (!querySnapshot.empty) {
-            //     const error = "El correo del usuario ya está en la lista de espera, prueba con otro correo";
-            //     setError(error);
-            //     throw new Error(error);
-            // }
+            if (!querySnapshot.empty) {
+                const error = "El correo del usuario ya está en la lista de espera, prueba con otro correo";
+                setError(error);
+                throw new Error(error);
+            }
 
             const uniqueCode = uuidv4();
             await addDoc(collection(db, "user_wait_list"), {
