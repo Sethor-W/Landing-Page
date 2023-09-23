@@ -28,7 +28,7 @@ const TEXTS = {
   Slide3: {
     title: "¡Unete ya a nuestra comunidad y obtén recompensas exclusivas el dia de lanzamiento!",
     TextArray: [
-      "Completa simplemente el formulario que se encuentra a continuación, y estarás inscrito en nuestra lista de espera. Al inscribirte, serás recompensado con acceso anticipado a nuestra aplicación, además de regalos, puntos y otras sorpresas.",
+      "Solo completa el formulario y ya estarás inscrito en nuestra lista de espera. Al inscribirte, serás recompensado con acceso anticipado a nuestra aplicación, además de regalos, puntos y otras sorpresas.",
       "No dejes escapar la oportunidad de unirte a una nueva era en la que tu rostro es suficiente para pagar y tus huellas permiten transferencias rápidas y seguras. ¡Inscríbete ahora y sé parte de esta emocionante revolución!"
     ],
     message: "Cuando llegue el momento de pagar, es posible que olvides tu cartera, efectivo o incluso tu celular, pero lo que nunca debes olvidar es que con nosotros, solo necesitas a ti mismo para realizar el pago.",

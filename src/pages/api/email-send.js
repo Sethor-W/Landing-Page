@@ -1,25 +1,24 @@
-import { mailOptions, transporter } from "@/config/email";
+import { emailHtml, mailOptions, remplazarMarcadores, transporter } from "@/config/email";
 
 const handle = async (req, res) => {
-    if (req.method === 'GET') {
-        // const data = req.body;
+    if (req.method === 'POST') {
+        const data = req.body;
         try {
-            const code = "aaaaaaaaaaaaaaaaaaaaaaaaa";
+            const html = await remplazarMarcadores(emailHtml, data);
             const info  = await transporter.sendMail({
-                // ...mailOptions,
-                from: 'info@sethor.tech',
-                to: 'power102004@gmail.com',
-                subject: 'Bienvenido a Sethor',
-                text: 'Este es el codigo para acceder a los beneficios de la lista de espera: ' + code,
-                html: "<b>Hello world?</b>",
+                from: data.mailFrom ? data.mailFrom : 'info@sethor.tech',
+                to: data.mailTo,
+                subject: '¡Gracias por suscribirte a nuestra lista de espera!',
+                text: 'Este es el codigo para acceder a los beneficios de la lista de espera: ' + data.code,
+                html: html,
             });
-            return res.status(200).json({ message: 'Email enviado', idEmail: info.messageId })
-        } catch (error) {
-            return res.status(200).json({ message: error })
+            return res.status(200).json({ message: 'Email enviado'}) //idEmail: info.messageId 
+        } catch (err) {
+            return res.status(400).json({ message: 'ERROR: '+err})
         }
         
     }else {
-        return res.status(200).json({ name: 'John Doedd' })
+        return res.status(400).json({ message: 'Metodo no registrado' })
     }
 }
 

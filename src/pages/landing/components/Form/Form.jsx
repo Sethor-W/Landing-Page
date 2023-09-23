@@ -207,18 +207,25 @@ export default function Form() {
     
     const [error, setError] = useState(null);
 
-    async function sendEmail(emailDestination, code) {
-      try {
-        fetch('/api/hello')
-        .then((response) => response.json())
-        .then((data) => setData(data))
-        .catch((error) => console.error('Error al obtener datos de la API:', error));
-        
-    
-        // console.log('Correo electrónico enviado con éxito');
-      } catch (error) {
-        console.error('Error al enviar el correo electrónico:', error);
-      }
+    async function sendEmail(emailDestination, code, name) {
+      const dataToSend = {
+        mailTo: emailDestination,
+        code: code,
+        name: name,
+      };
+
+      fetch('/api/email-send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+      })
+      .then((response) => {
+        response.json()
+        console.log(response)
+      })
+      .catch((error) => console.error('Error al enviar mail:', error));
     }
 
     const handleSubmit = async (e) => {
@@ -282,7 +289,7 @@ export default function Form() {
                 code: uniqueCode,
             });
             console.log("Document written with ID: ", docRef.id);
-            await sendEmail(email, uniqueCode);
+            await sendEmail(email, uniqueCode, name);
         } catch (error) {
             console.error(error);
         }

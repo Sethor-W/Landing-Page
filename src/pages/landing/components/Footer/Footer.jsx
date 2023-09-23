@@ -53,7 +53,7 @@ export default function Footer() {
             </div>
             <div>
               <h5>Móvil:</h5>
-              <p>+ -----</p>
+              <p>+1 (809) 324-0564</p>
             </div>
           </div>
         </div>
