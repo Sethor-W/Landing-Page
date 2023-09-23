@@ -205,6 +205,8 @@ export default function Form() {
         "Zimbabue",
     ];
     
+    const [loading, setLoading] = useState(false);
+    const [statusSendEmail, setStatusSendEmail] = useState(false);
     const [error, setError] = useState(null);
 
     async function sendEmail(emailDestination, code, name) {
@@ -213,23 +215,31 @@ export default function Form() {
         code: code,
         name: name,
       };
+      setLoading(true);
 
-      fetch('/api/email-send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataToSend)
-      })
-      .then((response) => {
-        response.json()
-        console.log(response)
-      })
-      .catch((error) => console.error('Error al enviar mail:', error));
+      try {
+        const response = await fetch('/api/email-send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataToSend)
+        })
+
+        if (response.status === 200) {
+          setStatusSendEmail(true);
+        }
+      } catch (error) {
+        console.error('Error al enviar mail:', error)
+      } finally {
+        setLoading(false);
+      }
+
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
         try {
             const name = e.target.name.value;
             const email = e.target.email.value;
@@ -272,7 +282,7 @@ export default function Form() {
             // }
 
             const uniqueCode = uuidv4();
-            const docRef = await addDoc(collection(db, "user_wait_list"), {
+            await addDoc(collection(db, "user_wait_list"), {
                 name: name,
                 email: email,
                 country,
@@ -288,168 +298,224 @@ export default function Form() {
                 q10,
                 code: uniqueCode,
             });
-            console.log("Document written with ID: ", docRef.id);
             await sendEmail(email, uniqueCode, name);
         } catch (error) {
             console.error(error);
         }
     };
 
+    const handleActiveForm = () => {
+      setLoading(false);
+      setStatusSendEmail(false);
+      setError(null);
+    }
+
   return (
     <form
         class="space-y-6"
         onSubmit={handleSubmit}
     >
-      <div>
-        <label
-          for="name"
-          class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-        >
-          Tu nombre
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Nombre"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-          //required
-        />
-      </div>
-      <div>
-        <label
-          for="email"
-          class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-        >
-          Tu email
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-          placeholder="name@example.com"
-          //required
-        />
-      </div>
-      <div>
-        <label
-          for="country"
-          class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-        >
-          Tu país
-        </label>
-        <select
-          className="text-gray-900 text-base block w-full px-4 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
-          //required
-          name="country"
-        >
-          <option value="" className="text-gray-900 text-base">
-            Selecciona un país
-          </option>
-          {countries.map((country, index) => (
-            <option
-              key={index}
-              value={country}
-              className="text-gray-900 text-base"
+      {/* Titulos */}
+      {statusSendEmail && (
+        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+          Bienvenido a Sethor
+        </h3>
+      )}
+      {!loading && !statusSendEmail && (
+        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+          Llena la encuesta para ser parte de Sethor
+        </h3>
+      )}
+
+      {/* Mensaje de Carga */}
+      {loading && (
+        <>
+          <p className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Espere un momento, se esta enviando su respuesta...</p>
+        </>
+      )}
+
+      {/* Formulario */}
+      {!loading && !statusSendEmail && (
+        <div className="form">
+          <div>
+            <label
+              for="name"
+              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
             >
-              {country}
-            </option>
-          ))}
-        </select>
-      </div>
-      <hr />
-      <div>
-        <Label forHTML={"q1"}>
-          ¿Te gustaría poder pagar sin la necesidad de usar efectivo, tarjetas
-          bancarias o tu propio dispositivo móvil? Y ¿Por qué?
-        </Label>
-        <Textarea name={"q1"} id={"q1"} />
-      </div>
-      <div>
-        <Label forHTML={"q2"}>
-          Si tuvieras la oportunidad de crear una billetera digital, ¿Que
-          herramientas o beneficios incluirías que crees que serían útiles para
-          ti o para los demás?
-        </Label>
-        <Textarea name={"q2"} id={"q2"} />
-      </div>
-      <div>
-        <Label forHTML={"q3"}>
-          ¿Cuál es tu mayor temor o preocupación sobre una aplicación
-          financiera?
-        </Label>
-        <Textarea name={"q3"} id={"q3"} />
-      </div>
-      <div>
-        <Label forHTML={"q4"}>
-          Si tuvieras la oportunidad de crear una plataforma de comercio
-          electrónico, ¿Que herramientas o beneficios incluirías que crees que
-          serían útiles para ti o para los demás?
-        </Label>
-        <Textarea name={"q4"} id={"q4"} />
-      </div>
-      <div>
-        <Label forHTML={"q5"}>
-          ¿Cuál es tu mayor temor o preocupación sobre una plataforma de
-          comercio electrónico?
-        </Label>
-        <Textarea name={"q5"} id={"q5"} />
-      </div>
-      <div>
-        <Label forHTML={"q6"}>
-          Si te dieran la opción de pagar usando tu huella o tu cara ¿Cuál
-          opción escogerías?
-        </Label>
-        <Textarea name={"q6"} id={"q6"} />
-      </div>
-      <div>
-        <Label forHTML={"q7"}>
-          En base al video que viste ¿Consideras que nuestro producto satisface
-          tus necesidades?
-        </Label>
-        <Textarea name={"q7"} id={"q7"} />
-      </div>
-      <div>
-        <Label forHTML={"q8"}>
-          ¿Qué te parece la idea de una aplicación donde puedas hacer
-          actividades financieras y también poder hacer actividades de un
-          comercio electrónico como comprar una laptop o un juego de cocina?
-        </Label>
-        <Textarea name={"q8"} id={"q8"} />
-      </div>
-      <div>
-        <Label forHTML={"q9"}>
-          ¿Qué piensas sobre poder usar tu huella o tu cara para poder pagar en
-          un establecimiento físico?
-        </Label>
-        <Textarea name={"q9"} id={"q9"} />
-      </div>
-      <div>
-        <Label forHTML={"q10"}>
-          Si actualmente estuviéramos disponible en el mercado para tu uso,
-          ¿descargarías nuestra aplicación y la recomendarías a tus conocidos?
-        </Label>
-        <Textarea name={"q10"} id={"q10"} />
-      </div>
-      <hr />
-      {error ? (
-        <p className="text-red-500 text-base font-medium">
-            {error}
-        </p>
-      ) : (
-        <p className="text-gray-900 text-base">
-            Muchas gracias al completar la encuesta, seras de los primeros en saber
-            de nuestro lanzamiento, te enviaremos un correo con el codigo para que
-            puedas acceder a los beneficios de la lista de espera.
+              Tu nombre
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Nombre"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              //required
+            />
+          </div>
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
+            >
+              Tu email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              placeholder="name@example.com"
+              //required
+            />
+          </div>
+          <div>
+            <label
+              for="country"
+              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
+            >
+              Tu país
+            </label>
+            <select
+              className="text-gray-900 text-base block w-full px-4 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
+              //required
+              name="country"
+            >
+              <option value="" className="text-gray-900 text-base">
+                Selecciona un país
+              </option>
+              {countries.map((country, index) => (
+                <option
+                  key={index}
+                  value={country}
+                  className="text-gray-900 text-base"
+                >
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div>
+          <hr />
+          <div>
+            <Label forHTML={"q1"}>
+              ¿Te gustaría poder pagar sin la necesidad de usar efectivo, tarjetas
+              bancarias o tu propio dispositivo móvil? Y ¿Por qué?
+            </Label>
+            <Textarea name={"q1"} id={"q1"} />
+          </div>
+          <div>
+            <Label forHTML={"q2"}>
+              Si tuvieras la oportunidad de crear una billetera digital, ¿Que
+              herramientas o beneficios incluirías que crees que serían útiles para
+              ti o para los demás?
+            </Label>
+            <Textarea name={"q2"} id={"q2"} />
+          </div>
+          <div>
+            <Label forHTML={"q3"}>
+              ¿Cuál es tu mayor temor o preocupación sobre una aplicación
+              financiera?
+            </Label>
+            <Textarea name={"q3"} id={"q3"} />
+          </div>
+          <div>
+            <Label forHTML={"q4"}>
+              Si tuvieras la oportunidad de crear una plataforma de comercio
+              electrónico, ¿Que herramientas o beneficios incluirías que crees que
+              serían útiles para ti o para los demás?
+            </Label>
+            <Textarea name={"q4"} id={"q4"} />
+          </div>
+          <div>
+            <Label forHTML={"q5"}>
+              ¿Cuál es tu mayor temor o preocupación sobre una plataforma de
+              comercio electrónico?
+            </Label>
+            <Textarea name={"q5"} id={"q5"} />
+          </div>
+          <div>
+            <Label forHTML={"q6"}>
+              Si te dieran la opción de pagar usando tu huella o tu cara ¿Cuál
+              opción escogerías?
+            </Label>
+            <Textarea name={"q6"} id={"q6"} />
+          </div>
+          <div>
+            <Label forHTML={"q7"}>
+              En base al video que viste ¿Consideras que nuestro producto satisface
+              tus necesidades?
+            </Label>
+            <Textarea name={"q7"} id={"q7"} />
+          </div>
+          <div>
+            <Label forHTML={"q8"}>
+              ¿Qué te parece la idea de una aplicación donde puedas hacer
+              actividades financieras y también poder hacer actividades de un
+              comercio electrónico como comprar una laptop o un juego de cocina?
+            </Label>
+            <Textarea name={"q8"} id={"q8"} />
+          </div>
+          <div>
+            <Label forHTML={"q9"}>
+              ¿Qué piensas sobre poder usar tu huella o tu cara para poder pagar en
+              un establecimiento físico?
+            </Label>
+            <Textarea name={"q9"} id={"q9"} />
+          </div>
+          <div>
+            <Label forHTML={"q10"}>
+              Si actualmente estuviéramos disponible en el mercado para tu uso,
+              ¿descargarías nuestra aplicación y la recomendarías a tus conocidos?
+            </Label>
+            <Textarea name={"q10"} id={"q10"} />
+          </div>
+          <hr />
+          <br />
+          <p className="text-gray-900 text-base dark:text-white italic">
+            Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios.
+          </p>
+          {error && (
+            <p className="text-red-500 text-base font-medium mt-3">
+                {error}
+            </p>
+          )}
+        </div>
+      )}
+
+
+      {statusSendEmail && (
+        <p className="text-gray-900 text-base font-medium dark:text-white">
+          Muchas gracias por completar la encuesta, seras de los primeros en saber
+          de nuestro lanzamiento, te hemos enviado un correo con el codigo para que
+          puedas acceder a los beneficios de la lista de espera.
         </p>
       )}
-      <button
-        type="submit"
-        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Unirse
-      </button>
+
+      {/* Buttons */}
+      {loading && (
+        <button
+          disabled={true}
+          class="w-full text-white bg-blue-400 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Enviando...
+        </button>
+      )}
+      {!loading && !statusSendEmail && (
+        <button
+          type="submit"
+          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Unirse
+        </button>
+      )}
+      {statusSendEmail && (
+        <button
+          onClick={handleActiveForm}
+          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Agregar a otra persona a la lista de espera
+        </button>
+      )}
     </form>
   );
 }

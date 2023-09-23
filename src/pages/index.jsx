@@ -19,10 +19,11 @@ const TEXTS = {
     t2: "Donde pagar con tu rostro o tu huella en cualquier lugar y momento ya no sera cosa del futuro",
   },
   Slide2:{
-    title: "Tu Futura Aplicación Híbrida: Sin Preocupaciones de Pago",
+    // title: "El cambio está aquí",
     description: [
-      "Imagina una aplicación que fusiona lo mejor de una billetera digital y el comercio en línea.",
-      "Con nosotros, nunca más tendrás que agregar métodos de pago o preocuparte por no tener saldo con que pagar."
+      // "Imagina una aplicación que fusiona lo mejor de una billetera digital y el comercio en línea.",
+      // "Con nosotros, nunca más tendrás que agregar métodos de pago o preocuparte por no tener saldo con que pagar."
+      "Seremos tu próxima aplicación híbrida entre una billetera digital y un comercio electrónico, donde con nosotros no tendrás que agregar un método de pago para comprar ni preocuparte por no tener saldo con qué pagar."
     ],
   },
   Slide3: {
@@ -112,9 +113,9 @@ export default function Home() {
               className="bg-[url(/img/bg-video.webp)] bg-no-repeat bg-contain flex flex-col items-center justify-center"
             >
               <div className="w-[80%] md:w-[70%]">
-                <h1 className="text-gray-900 font-bold mb-4 text-2xl md:text-4xl md:mb-10">
+                {/* <h1 className="text-gray-900 font-bold mb-4 text-2xl md:text-4xl md:mb-10">
                   {TEXTS.Slide2.title}
-                </h1>
+                </h1> */}
                 <p className="text-gray-900 mb-4 text-base md:text-lg md:mb-10">
                   {TEXTS.Slide2.description[0]}
                   <br />
@@ -166,10 +167,8 @@ export default function Home() {
                     src="/logo/Logotipo.svg"
                     alt=""
                   />
-                  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                    Llena la encuesta para ser parte de Sethor
-                  </h3>
-                  <Form></Form>
+                  
+                  <Form/>
                 </div>
               </Popup>
             </div>
