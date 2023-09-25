@@ -218,7 +218,7 @@ a {
 }
 .cta:hover:before {
   width: 100%;
-  background: linear-gradient(to bottom right, rgb(59, 130, 246, 1), rgb(34, 197, 94, 1));
+  background: linear-gradient(to bottom right, rgb(59, 130, 246), rgb(34, 197, 94));
 }
 .cta:hover svg {
   transform: translateX(0);

@@ -56,6 +56,8 @@ export default function Home() {
       <Head>
         <title>Sethor</title>
         <meta property="og:title" content="Sethor" key="title" />
+        <meta property="og:description" content="Una puerta a dos mundos: Seremos una tecnología hibrida entre una billetera digital y un comercio electrónico, donde las personas aparte de obtener los beneficios de ambas, podrán utilizar tanto sus rostros como sus huellas, como método de pago en cualquier lugar o momento" />
+        <meta property="og:image" content="https://www.sethor.tech/logo/Logotipo.svg" />
       </Head>
       <header>
         <NavBar />

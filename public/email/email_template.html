@@ -26,20 +26,20 @@
             background-color: #2d323a !important;
         }
         /* Estilos para el contenedor principal */
-        .container {
+        .container-mail {
             width: 60%;
-            margin: 0 auto; /* Centra el contenedor horizontalmente */
-            padding: 1.25rem; /* Agrega espacio de relleno */
+            margin: 0 auto;
+            padding: 1.25rem;
             background-color: #f7f7f7;
-            font-size: 1.125rem; /* Ajusta el tamaño de fuente según tus necesidades */
-            color: #333; /* Cambia el color del texto según tus necesidades */
+            font-size: 1.125rem;
+            color: #333;
         }
 
         /* Estilos para la imagen del logotipo */
         .logo {
-            width: 20rem; /* Ajusta el ancho de la imagen según tus necesidades */
-            display: block; /* Evita problemas de alineación vertical */
-            margin: 0 auto 1rem; /* Centra la imagen horizontalmente y agrega espacio inferior */
+            width: 20rem;
+            display: block;
+            margin: 0 auto 1rem;
         }
 
         /* Estilos para los párrafos */
@@ -49,7 +49,7 @@
 
         /* Estilos para el enlace en el párrafo */
         p a {
-            color: #47007d; /* Cambia el color del enlace según tus necesidades */
+            color: #47007d;
             text-decoration: underline;
         }
         .code {
@@ -69,7 +69,7 @@
 
         /* Estilos para el contenedor dentro del footer */
         .footer-container {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.95) !important;
             border-radius: 10rem;
             padding: 2rem 2.5rem; 
             margin: 2.5rem auto;
@@ -126,12 +126,20 @@
             font-size: medium;
         }
 
+        @media (max-width: 640px){
+            .container-mail {
+                max-width: 100vw;
+                width: 100%;
+                margin: 0;
+            }
+        }
+
     </style>
   </head>
   <body>
     <!-- Contenedor principal -->
     <div class="body">
-        <div class="container">
+        <div class="container-mail">
             <!-- Logotipo -->
             <img class="logo" src="https://res.cloudinary.com/dnnjctymr/image/upload/v1695483459/sethor/Logotipo_me7qhe_dclnec.png" alt="Sethor">
             <br>
@@ -147,7 +155,7 @@
         </div>
     </div>
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer ">
         <div class="footer-container">
             <div class="footer-container-logo">
                 <img class="logo-footer" src="https://res.cloudinary.com/dnnjctymr/image/upload/v1695483459/sethor/Isotipo_ylmhxz_qkdx8s.png" alt="Isotipo">
