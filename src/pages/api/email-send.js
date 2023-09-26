@@ -6,7 +6,7 @@ const handle = async (req, res) => {
         try {
             const html = await remplazarMarcadores(emailHtml, data);
             const info  = await transporter.sendMail({
-                from: data.mailFrom ? data.mailFrom : 'info@sethor.tech',
+                from: data.mailFrom ? data.mailFrom : '"Sethor" <info@sethor.tech>' ,
                 to: data.mailTo,
                 subject: '¡Gracias por suscribirte a nuestra lista de espera!',
                 text: 'Este es el codigo para acceder a los beneficios de la lista de espera: ' + data.code,

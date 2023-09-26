@@ -7,209 +7,233 @@ import Textarea from "../Textarea/Textarea";
 import ButtonShare from "../ButtonShare/ButtonShare";
 // import transporter from "@/config/email";
 
+const countries = [
+    "Afganistán",
+    "Albania",
+    "Alemania",
+    "Andorra",
+    "Angola",
+    "Antigua y Barbuda",
+    "Arabia Saudita",
+    "Argelia",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaiyán",
+    "Bahamas",
+    "Bangladés",
+    "Barbados",
+    "Baréin",
+    "Bélgica",
+    "Belice",
+    "Benín",
+    "Bielorrusia",
+    "Birmania",
+    "Bolivia",
+    "Bosnia y Herzegovina",
+    "Botsuana",
+    "Brasil",
+    "Brunéi",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Bután",
+    "Cabo Verde",
+    "Camboya",
+    "Camerún",
+    "Canadá",
+    "Catar",
+    "Chad",
+    "Chile",
+    "China",
+    "Chipre",
+    "Colombia",
+    "Comoras",
+    "Congo",
+    "Corea del Norte",
+    "Corea del Sur",
+    "Costa de Marfil",
+    "Costa Rica",
+    "Croacia",
+    "Cuba",
+    "Dinamarca",
+    "Dominica",
+    "Ecuador",
+    "Egipto",
+    "El Salvador",
+    "Emiratos Árabes Unidos",
+    "Eritrea",
+    "Eslovaquia",
+    "Eslovenia",
+    "España",
+    "Estados Unidos",
+    "Estonia",
+    "Etiopía",
+    "Filipinas",
+    "Finlandia",
+    "Fiyi",
+    "Francia",
+    "Gabón",
+    "Gambia",
+    "Georgia",
+    "Ghana",
+    "Granada",
+    "Grecia",
+    "Guatemala",
+    "Guyana",
+    "Guinea",
+    "Guinea-Bisáu",
+    "Guinea Ecuatorial",
+    "Haití",
+    "Honduras",
+    "Hungría",
+    "India",
+    "Indonesia",
+    "Irak",
+    "Irán",
+    "Irlanda",
+    "Islandia",
+    "Islas Marshall",
+    "Islas Salomón",
+    "Israel",
+    "Italia",
+    "Jamaica",
+    "Japón",
+    "Jordania",
+    "Kazajistán",
+    "Kenia",
+    "Kirguistán",
+    "Kiribati",
+    "Kuwait",
+    "Laos",
+    "Lesoto",
+    "Letonia",
+    "Líbano",
+    "Liberia",
+    "Libia",
+    "Liechtenstein",
+    "Lituania",
+    "Luxemburgo",
+    "Macedonia del Norte",
+    "Madagascar",
+    "Malasia",
+    "Malaui",
+    "Maldivas",
+    "Malí",
+    "Malta",
+    "Marruecos",
+    "Mauricio",
+    "Mauritania",
+    "México",
+    "Micronesia",
+    "Moldavia",
+    "Mónaco",
+    "Mongolia",
+    "Montenegro",
+    "Mozambique",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Nicaragua",
+    "Níger",
+    "Nigeria",
+    "Noruega",
+    "Nueva Zelanda",
+    "Omán",
+    "Países Bajos",
+    "Pakistán",
+    "Palaos",
+    "Panamá",
+    "Papúa Nueva Guinea",
+    "Paraguay",
+    "Perú",
+    "Polonia",
+    "Portugal",
+    "Reino Unido",
+    "República Centroafricana",
+    "República Checa",
+    "República del Congo",
+    "República Dominicana",
+    "Ruanda",
+    "Rumania",
+    "Rusia",
+    "Samoa",
+    "San Cristóbal y Nieves",
+    "San Marino",
+    "Santa Lucía",
+    "Santo Tomé y Príncipe",
+    "San Vicente y las Granadinas",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leona",
+    "Singapur",
+    "Siria",
+    "Somalia",
+    "Sri Lanka",
+    "Suazilandia",
+    "Sudáfrica",
+    "Sudán",
+    "Sudán del Sur",
+    "Suecia",
+    "Suiza",
+    "Surinam",
+    "Tailandia",
+    "Taiwán",
+    "Tanzania",
+    "Tayikistán",
+    "Timor Oriental",
+    "Togo",
+    "Tonga",
+    "Trinidad y Tobago",
+    "Túnez",
+    "Turkmenistán",
+    "Turquía",
+    "Tuvalu",
+    "Ucrania",
+    "Uganda",
+    "Uruguay",
+    "Uzbekistán",
+    "Vanuatu",
+    "Vaticano",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Yibuti",
+    "Zambia",
+    "Zimbabue",
+];
+
 export default function Form() {
-    const countries = [
-        "Afganistán",
-        "Albania",
-        "Alemania",
-        "Andorra",
-        "Angola",
-        "Antigua y Barbuda",
-        "Arabia Saudita",
-        "Argelia",
-        "Argentina",
-        "Armenia",
-        "Australia",
-        "Austria",
-        "Azerbaiyán",
-        "Bahamas",
-        "Bangladés",
-        "Barbados",
-        "Baréin",
-        "Bélgica",
-        "Belice",
-        "Benín",
-        "Bielorrusia",
-        "Birmania",
-        "Bolivia",
-        "Bosnia y Herzegovina",
-        "Botsuana",
-        "Brasil",
-        "Brunéi",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Bután",
-        "Cabo Verde",
-        "Camboya",
-        "Camerún",
-        "Canadá",
-        "Catar",
-        "Chad",
-        "Chile",
-        "China",
-        "Chipre",
-        "Colombia",
-        "Comoras",
-        "Congo",
-        "Corea del Norte",
-        "Corea del Sur",
-        "Costa de Marfil",
-        "Costa Rica",
-        "Croacia",
-        "Cuba",
-        "Dinamarca",
-        "Dominica",
-        "Ecuador",
-        "Egipto",
-        "El Salvador",
-        "Emiratos Árabes Unidos",
-        "Eritrea",
-        "Eslovaquia",
-        "Eslovenia",
-        "España",
-        "Estados Unidos",
-        "Estonia",
-        "Etiopía",
-        "Filipinas",
-        "Finlandia",
-        "Fiyi",
-        "Francia",
-        "Gabón",
-        "Gambia",
-        "Georgia",
-        "Ghana",
-        "Granada",
-        "Grecia",
-        "Guatemala",
-        "Guyana",
-        "Guinea",
-        "Guinea-Bisáu",
-        "Guinea Ecuatorial",
-        "Haití",
-        "Honduras",
-        "Hungría",
-        "India",
-        "Indonesia",
-        "Irak",
-        "Irán",
-        "Irlanda",
-        "Islandia",
-        "Islas Marshall",
-        "Islas Salomón",
-        "Israel",
-        "Italia",
-        "Jamaica",
-        "Japón",
-        "Jordania",
-        "Kazajistán",
-        "Kenia",
-        "Kirguistán",
-        "Kiribati",
-        "Kuwait",
-        "Laos",
-        "Lesoto",
-        "Letonia",
-        "Líbano",
-        "Liberia",
-        "Libia",
-        "Liechtenstein",
-        "Lituania",
-        "Luxemburgo",
-        "Macedonia del Norte",
-        "Madagascar",
-        "Malasia",
-        "Malaui",
-        "Maldivas",
-        "Malí",
-        "Malta",
-        "Marruecos",
-        "Mauricio",
-        "Mauritania",
-        "México",
-        "Micronesia",
-        "Moldavia",
-        "Mónaco",
-        "Mongolia",
-        "Montenegro",
-        "Mozambique",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Nicaragua",
-        "Níger",
-        "Nigeria",
-        "Noruega",
-        "Nueva Zelanda",
-        "Omán",
-        "Países Bajos",
-        "Pakistán",
-        "Palaos",
-        "Panamá",
-        "Papúa Nueva Guinea",
-        "Paraguay",
-        "Perú",
-        "Polonia",
-        "Portugal",
-        "Reino Unido",
-        "República Centroafricana",
-        "República Checa",
-        "República del Congo",
-        "República Dominicana",
-        "Ruanda",
-        "Rumania",
-        "Rusia",
-        "Samoa",
-        "San Cristóbal y Nieves",
-        "San Marino",
-        "Santa Lucía",
-        "Santo Tomé y Príncipe",
-        "San Vicente y las Granadinas",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leona",
-        "Singapur",
-        "Siria",
-        "Somalia",
-        "Sri Lanka",
-        "Suazilandia",
-        "Sudáfrica",
-        "Sudán",
-        "Sudán del Sur",
-        "Suecia",
-        "Suiza",
-        "Surinam",
-        "Tailandia",
-        "Taiwán",
-        "Tanzania",
-        "Tayikistán",
-        "Timor Oriental",
-        "Togo",
-        "Tonga",
-        "Trinidad y Tobago",
-        "Túnez",
-        "Turkmenistán",
-        "Turquía",
-        "Tuvalu",
-        "Ucrania",
-        "Uganda",
-        "Uruguay",
-        "Uzbekistán",
-        "Vanuatu",
-        "Vaticano",
-        "Venezuela",
-        "Vietnam",
-        "Yemen",
-        "Yibuti",
-        "Zambia",
-        "Zimbabue",
-    ];
     
     const [loading, setLoading] = useState(false);
     const [statusSendEmail, setStatusSendEmail] = useState(false);
-    const [error, setError] = useState(null);
     const [mail, setMail] = useState(null);
+    const [optionRef, setOptionRef] = useState('correo');
+    const [birthDate, setBirthDate] = useState(''); // Estado para la fecha de nacimiento
+    const [error, setError] = useState(null);
+    const [errorDate, setErrorDate] = useState(null);
+
+    const [fingerprint, setFingerprint] = useState(false);
+    const [face, setFace] = useState(false);
+    
+    const handleFechaChange = (e) => {
+      const newDate = e.target.value;
+      // Validación del formato de fecha usando una expresión regular (dd/mm/yyyy)
+      const validFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(newDate);
+      
+      if (validFormat) {
+        setErrorDate('');
+        setBirthDate(newDate);
+      } else {
+        setErrorDate('El formato de fecha debe ser dd/mm/yyyy');
+      }
+    };
+
+    const handleOptionRefChange = (e) => {
+      setOptionRef(e.target.value);
+    };
 
     async function sendEmail(emailDestination, code, name) {
       const dataToSend = {
@@ -276,43 +300,49 @@ export default function Form() {
             const name = e.target.name.value;
             const email = e.target.email.value;
             const country = e.target.country.value;
-
-            const q1 = e.target.q1.value;
-            // const q2 = e.target.q2.value;
-            // const q3 = e.target.q3.value;
-            // const q4 = e.target.q4.value;
-            // const q5 = e.target.q5.value;
-            const q6 = e.target.q6.value;
-            const q7 = e.target.q7.value;
-            // const q8 = e.target.q8.value;
-            // const q9 = e.target.q9.value;
-            const q10 = e.target.q10.value;
-            const ref_email = e.target.ref_email.value;
+            const referral = e.target.referral.value;
+            const suggestion_opinion = e.target.suggestion_opinion.value;
             
-            if (ref_email) {
+            if (optionRef === 'correo' && referral) {
+                const refQuery = query(
+                  collection(db, "user_wait_list"),
+                  where("email", "==", referral)
+                );
+                const querySnapshot = await getDocs(refQuery);
+  
+                if (querySnapshot.empty) {
+                  const error = "El referido debe registrarse en la lista de espera.";
+                  setError(error);
+                  throw new Error(error);
+                }
+            }
+            if (optionRef === 'codigo' && referral) {
               const refQuery = query(
-                collection(db, "user_wait_list"),
-                where("email", "==", ref_email)
+                collection(db, "code_ref"),
+                where("code", "==", referral)
               );
               const querySnapshot = await getDocs(refQuery);
 
               if (querySnapshot.empty) {
-                const error = "El referido debe registrarse en la lista de espera.";
+                const error = "Codigo de referido incorrecto.";
                 setError(error);
                 throw new Error(error);
               }
             }
-
-            if (!name || !email || !country) {
-                const error = "Nombre, correo electrónico y país son obligatorios";
-                setError(error);
-                throw new Error(error);
+            if (!name || !email || !country || !birthDate) {
+              const error = "Nombre, correo electrónico, fecha de nacimiento y país son obligatorios";
+              setError(error);
+              throw new Error(error);
             }
-
-            if (!q1 || !q6 || !q7 || !q10) {
-                const error = "Todos los campos son obligatorios";
-                setError(error);
-                throw new Error(error);
+            if (!fingerprint && !face) {
+              const error = "Debe seleccionar su preferencia de pago";
+              setError(error);
+              throw new Error(error);
+            }
+            if (!suggestion_opinion) {
+              const error = "La sugerencia u opinion es un campo obligatorio";
+              setError(error);
+              throw new Error(error);
             }
 
             // Verifica si el usuario ya existe en la colección
@@ -320,29 +350,31 @@ export default function Form() {
                 collection(db, "user_wait_list"),
                 where("email", "==", email)
             );
-            const querySnapshot = await getDocs(userQuery);
 
+            const querySnapshot = await getDocs(userQuery);
             if (!querySnapshot.empty) {
                 const error = "El correo del usuario ya está en la lista de espera, prueba con otro correo";
                 setError(error);
                 throw new Error(error);
             }
 
-            // const uniqueCode = uuidv4();
+            
             const uniqueCode = await generateShortUniqueCode(6);
             await addDoc(collection(db, "user_wait_list"), {
                 name: name,
                 email: email,
-                country,
-                q1,
-                q6,
-                q7,
-                q10,
-                ref_email,
+                birthDate: birthDate,
+                country: country,
+                referral: referral,
+                suggestion_opinion,
+                payment_preference: {
+                  fingerprint: fingerprint,
+                  face: face,
+                },
                 code: uniqueCode,
             });
             await sendEmail(email, uniqueCode, name);
-            setMail(email)
+            setMail(email);
         } catch (error) {
             console.error(error);
         }
@@ -387,7 +419,7 @@ export default function Form() {
               for="name"
               class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
             >
-              Tu nombre
+              Nombre completo
             </label>
             <input
               type="text"
@@ -398,12 +430,34 @@ export default function Form() {
               // required
             />
           </div>
+
+          <div>
+            <TextError>
+              {errorDate}
+            </TextError>
+            <label
+              for="name"
+              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
+            >
+              Fecha de nacimiento
+            </label>
+            <input
+              type="text"
+              name="birthdate"
+              id="birthdate"
+              onChange={handleFechaChange}
+              placeholder="dd/mm/yyyy"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              // required
+            />
+          </div>
+
           <div>
             <label
               for="email"
               class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
             >
-              Tu email
+              Correo electrónico
             </label>
             <input
               type="email"
@@ -414,6 +468,7 @@ export default function Form() {
               // required
             />
           </div>
+
           <div>
             <label
               for="country"
@@ -440,106 +495,110 @@ export default function Form() {
               ))}
             </select>
           </div>
-          <hr className="my-5" />
-          <div>
-            <Label forHTML={"q1"}>
-              ¿Te gustaría poder pagar sin la necesidad de usar efectivo, tarjetas
-              bancarias o tu propio dispositivo móvil? Y ¿Por qué?
-            </Label>
-            <Textarea name={"q1"} id={"q1"} />
-          </div>
-          {/* <div>
-            <Label forHTML={"q2"}>
-              Si tuvieras la oportunidad de crear una billetera digital, ¿Que
-              herramientas o beneficios incluirías que crees que serían útiles para
-              ti o para los demás?
-            </Label>
-            <Textarea name={"q2"} id={"q2"} />
-          </div> */}
-          {/* <div>
-            <Label forHTML={"q3"}>
-              ¿Cuál es tu mayor temor o preocupación sobre una aplicación
-              financiera?
-            </Label>
-            <Textarea name={"q3"} id={"q3"} />
-          </div> */}
-          {/* <div>
-            <Label forHTML={"q4"}>
-              Si tuvieras la oportunidad de crear una plataforma de comercio
-              electrónico, ¿Que herramientas o beneficios incluirías que crees que
-              serían útiles para ti o para los demás?
-            </Label>
-            <Textarea name={"q4"} id={"q4"} />
-          </div> */}
-          {/* <div>
-            <Label forHTML={"q5"}>
-              ¿Cuál es tu mayor temor o preocupación sobre una plataforma de
-              comercio electrónico?
-            </Label>
-            <Textarea name={"q5"} id={"q5"} />
-          </div> */}
-          <div>
-            <Label forHTML={"q6"}>
-              Si te dieran la opción de pagar usando tu huella o tu cara ¿Cuál
-              opción escogerías?
-            </Label>
-            <Textarea name={"q6"} id={"q6"} />
-          </div>
-          <div>
-            <Label forHTML={"q7"}>
-              En base al video que viste ¿Consideras que nuestro producto satisface
-              tus necesidades?
-            </Label>
-            <Textarea name={"q7"} id={"q7"} />
-          </div>
-          {/* <div>
-            <Label forHTML={"q8"}>
-              ¿Qué te parece la idea de una aplicación donde puedas hacer
-              actividades financieras y también poder hacer actividades de un
-              comercio electrónico como comprar una laptop o un juego de cocina?
-            </Label>
-            <Textarea name={"q8"} id={"q8"} />
-          </div> */}
-          {/* <div>
-            <Label forHTML={"q9"}>
-              ¿Qué piensas sobre poder usar tu huella o tu cara para poder pagar en
-              un establecimiento físico?
-            </Label>
-            <Textarea name={"q9"} id={"q9"} />
-          </div> */}
-          <div>
-            <Label forHTML={"q10"}>
-              Si actualmente estuviéramos disponible en el mercado para tu uso,
-              ¿descargarías nuestra aplicación y la recomendarías a tus conocidos?
-            </Label>
-            <Textarea name={"q10"} id={"q10"} />
-          </div>
-          <hr />
-          <br />
-          <div>
+
+          <div className="mt-5 text-gray-800 text-base">
             <Label forHTML={"ref_email"}>
-              Correo del referido <span className="text-gray-800 text-base dark:text-white italic">(Opcional)</span>
-              {/* <p className="text-gray-900 text-sm font-normal dark:text-white italic">Este correo le da beneficios adicionales a su referido.</p> */}
+              {optionRef === 'correo' ? 'Correo' : 'Código'} de referido <span className="text-gray-800 text-base dark:text-white italic">(Opcional)</span>
             </Label>
-            <input
-              type="email"
-              name="ref_email"
-              id="ref_email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              placeholder="ref@example.com"
-            />
+            Elije una opción de referido:
+            <div className="flex gap-10">
+              <label className="">
+                <input
+                  type="radio"
+                  name="ref_email"
+                  id="ref_email"
+                  value="correo"
+                  checked={optionRef === 'correo'}
+                  onChange={handleOptionRefChange}
+                />
+                <span className="text-gray-800 text-base dark:text-white italic ml-2">Correo</span>
+              </label>
+              <label className="text-gray-800 text-base dark:text-white italic">
+                <input
+                  type="radio"
+                  name="ref_code"
+                  id="ref_code"
+                  value="codigo"
+                  checked={optionRef === 'codigo'}
+                  onChange={handleOptionRefChange}
+                />
+                <span className="text-gray-800 text-base dark:text-white italic ml-2">Código</span>
+              </label>
+            </div>
+            {optionRef === 'correo' ? (
+              <input
+                type="email"
+                name="referral"
+                id="referral"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="ref@example.com"
+              />
+            ) : (
+              <input
+                type="text"
+                name="referral"
+                id="referral"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="SETHOR2023"
+              />
+            )}
           </div>
-          <p className="text-gray-900 text-base dark:text-white italic">
+
+          <hr className="my-5" />
+
+          <div>
+            <Label forHTML={""}>
+              Con cual prefieres pagar: 
+            </Label>
+            <div className="flex flex-row items-center gap-10 mb-7 py-5">
+              <div className="flex flex-row items-center gap-4">
+                <label
+                    className="text-gray-900 text-base dark:text-white"
+                    htmlFor="fingerprint"
+                >Huella digital</label>
+                <input
+                  className="m-0 cursor-pointer"
+                  type="checkbox"
+                  id="fingerprint"
+                  name="fingerprint"
+                  onChange={() => setFingerprint(!fingerprint)}
+                />
+              </div>
+              <div className="flex flex-row items-center gap-4">
+                <label
+                    className="text-gray-900 text-base dark:text-white"
+                    htmlFor="face"
+                >Rostro</label>
+                <input
+                  className="m-0 cursor-pointer"
+                  type="checkbox"
+                  id="face"
+                  name="face"
+                  onChange={() => setFace(!face)}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <Label forHTML={"suggestion_opinion"}>
+              ¿Que sugerencia o herramienta te gustaría que tomemos en consideración para la creación de la aplicación?
+            </Label>
+            <Textarea name={"suggestion_opinion"} id={"suggestion_opinion"} />
+          </div>
+
+          <hr />
+          
+          <p className="text-gray-900 mt-5 text-base dark:text-white italic">
             Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios.
           </p>
           {error && (
-            <p className="text-red-500 text-base font-medium mt-3">
-                {error}
-            </p>
+            <TextError>
+              {error}
+            </TextError>
           )}
         </div>
       )}
-
 
       {statusSendEmail && (
         <p className="text-gray-900 text-base font-medium dark:text-white">
@@ -583,3 +642,13 @@ export default function Form() {
     </form>
   );
 }
+
+
+const TextError = ({children}) => {
+  return (
+      <p className="text-red-500 text-base font-medium mt-3">
+        {children}
+      </p>
+  )
+}
+
