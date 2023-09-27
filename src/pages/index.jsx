@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Footer from './landing/components/Footer/Footer'
 import Link from 'next/link'
 import Form from './landing/components/Form/Form'
+import Video from './landing/components/Video/Video'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -126,12 +127,13 @@ export default function Home() {
                   {/* Todo esto sin la necesidad de compartir tus datos generales a la hora de usar una de nuestras herramientas */}
                 </p>
               </div>
-              <video
+              <Video/>
+              {/* <video
                 className="w-[70vw] rounded-md shadow-slate-800 shadow-md m-4"
                 src="/video/video.mp4"
                 controls
                 play
-              ></video>
+              ></video> */}
             </section>
         </div>
 
