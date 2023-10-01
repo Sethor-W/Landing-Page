@@ -207,6 +207,7 @@ const countries = [
 
 export default function Form() {
     
+    const [changeButton_Loading, setChangeButton_Loading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [statusSendEmail, setStatusSendEmail] = useState(false);
     const [mail, setMail] = useState(null);
@@ -217,6 +218,7 @@ export default function Form() {
 
     const [fingerprint, setFingerprint] = useState(false);
     const [face, setFace] = useState(false);
+
     
     const handleFechaChange = (e) => {
       const newDate = e.target.value;
@@ -295,7 +297,9 @@ export default function Form() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setChangeButton_Loading(true)
         setError(null);
+        let referralUpperCase = null;
         try {
             const name = e.target.name.value;
             const email = e.target.email.value;
@@ -317,9 +321,11 @@ export default function Form() {
                 }
             }
             if (optionRef === 'codigo' && referral) {
+              referralUpperCase = referral.toUpperCase()
+              console.log(referralUpperCase)
               const refQuery = query(
                 collection(db, "code_ref"),
-                where("code", "==", referral)
+                where("code", "==", referralUpperCase)
               );
               const querySnapshot = await getDocs(refQuery);
 
@@ -365,7 +371,7 @@ export default function Form() {
                 email: email,
                 birthDate: birthDate,
                 country: country,
-                referral: referral,
+                referral: referralUpperCase,
                 suggestion_opinion,
                 payment_preference: {
                   fingerprint: fingerprint,
@@ -378,6 +384,9 @@ export default function Form() {
         } catch (error) {
             console.error(error);
         }
+
+        setChangeButton_Loading(false)
+
     };
 
     const handleActiveForm = () => {
@@ -609,7 +618,7 @@ export default function Form() {
       )}
 
       {/* Buttons */}
-      {loading && (
+      {loading || changeButton_Loading && (
         <button
           disabled={true}
           class="w-full text-white bg-blue-400 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -617,7 +626,7 @@ export default function Form() {
           Enviando...
         </button>
       )}
-      {!loading && !statusSendEmail && (
+      {!changeButton_Loading && !loading && !statusSendEmail && (
         <button
           type="submit"
           class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
