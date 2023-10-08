@@ -9,14 +9,15 @@ export default function Video() {
 
   return (
     <div className='w-[70vw] h-[50vh] sm:h-[70vh]'>
-        <ReactPlayer
+        {/* <ReactPlayer
             url={videoYT}
             loop={true}
             // playing={true}
             volume={1}
             width="100%"
             height="100%"
-        ></ReactPlayer>
+        ></ReactPlayer> */}
+        <video src={videoYT}></video>
     </div>
   )
 }

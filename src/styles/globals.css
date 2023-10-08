@@ -1,15 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 :root {
   --letter-principal-color: rgb(255, 255, 255);
-  --letter-sub-color: rgb(155, 155, 155);
+  --letter-sub-color: rgb(203, 203, 203);
   --background-principal-rgb: rgb(14, 24, 43);
   --background-principal-rgb: rgb(34, 40, 71);
   /* --background-principal-rgb: rgba(52, 30, 167, 1); */
   --background-secundary-rgb: rgb(20, 20, 20);
   --background-secundary-rgb: rgb(20, 20, 20);
   --background-secundary-rgb: rgba(217, 234, 254, 1);
+  --background-button-action-rgb: rgb(91, 239, 230);
+  
 
   --color-logo-1: rgba(204, 119, 237, 1);
   --color-logo-2: rgba(96, 214, 218, 1);
@@ -20,7 +26,7 @@
 
 * {
   color: var(--letter-principal-color);
-  /* color: rgb(75 85 99); */
+  font-family: 'Urbanist', sans-serif;
 }
 
 html {
@@ -34,16 +40,9 @@ html {
   padding: 0;
   padding: 1.5rem;
 }
-footer, nav{
-  padding: 0 3rem;
-}
 section.body {
   padding: 5rem 3rem;
 }
-nav {
-  box-shadow: 0 1px 5px rgb(0, 0, 0, .5);
-}
-
 
 .section2 {
   background: rgba(35, 61, 101, 0.5);
@@ -153,22 +152,6 @@ input, textarea {
    padding: 5rem 10rem;
   }
 }
-
-.mobile {
-  animation: mobile-animate 4s linear infinite;
-}
-@keyframes mobile-animate {
-  0% {
-      transform: translatey(0);
-  }
-  50% {
-      transform: translateY(1.2rem);;
-  }
-  0% {
-    transform: translatey(0);
-  }
-}
-
 
 
 /* Animacion button */
