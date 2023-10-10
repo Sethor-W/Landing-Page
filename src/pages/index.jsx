@@ -3,14 +3,11 @@ import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import NavBar from './landing/components/NavBar/NavBar'
 import Popup from './landing/components/Popup/Popup'
-import Textarea from './landing/components/Inputs/Textarea/Textarea'
-import Label from './landing/components/Inputs/Label/Label'
 import { useState } from 'react'
 import Footer from './landing/components/Footer/Footer'
 import Link from 'next/link'
 import Form from './landing/components/Form/Form'
 import Video from './landing/components/Video/Video'
-import LearnMore from './landing/components/Buttons/LearnMore/LearnMore'
 import P from './landing/components/Text/P'
 import ButtonActivePopup from './landing/components/Buttons/ButtonActivePopup/ButtonActivePopup'
 
@@ -109,10 +106,12 @@ export default function Home() {
                   onClick={handleActive}
                   text={TEXTS_BUTTONS.Waitlist}
                 />
-                <LearnMore
-                  href={'#features'}
-                  text={TEXTS_BUTTONS.LearnMore}
-                />
+                <Link
+                    className='text-white text-lg font-bold  py-4 px-7 rounded-2xl'
+                    href={'#features'}
+                >
+                  {TEXTS_BUTTONS.LearnMore}
+                </Link>
               </div>
               <div class="relative w-full">
                 <img
@@ -140,10 +139,12 @@ export default function Home() {
                   onClick={handleActive}
                   text={TEXTS_BUTTONS.Waitlist}
                 />
-                <LearnMore
+                <Link
+                  className='text-white text-lg font-bold  py-4 px-7 rounded-2xl'
                   href={'#features'}
-                  text={TEXTS_BUTTONS.LearnMore}
-                />
+                >
+                  {TEXTS_BUTTONS.LearnMore}
+                </Link>
               </div>
             </div>
           </div>
@@ -168,10 +169,12 @@ export default function Home() {
                     onClick={handleActive}
                     text={TEXTS_BUTTONS.Waitlist}
                   />
-                  <LearnMore
-                    href={'#features'}
-                    text={TEXTS_BUTTONS.LearnMore}
-                  />
+                  <Link
+                      className='text-white text-lg font-bold  py-4 px-7 rounded-2xl'
+                      href={'#features'}
+                  >
+                    {TEXTS_BUTTONS.LearnMore}
+                  </Link>
                 </div>
               </div>
               <div className='hidden lg:block w-[50%] text-center '>
