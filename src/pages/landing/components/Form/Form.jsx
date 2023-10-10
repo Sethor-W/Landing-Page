@@ -227,7 +227,7 @@ export default function Form() {
     
     const [changeButton_Loading, setChangeButton_Loading] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [statusSendEmail, setStatusSendEmail] = useState(false);
+    const [statusSendEmail, setStatusSendEmail] = useState(true);
     const [mail, setMail] = useState(null);
     const [optionRef, setOptionRef] = useState('correo');
     const [birthDate, setBirthDate] = useState(''); // Estado para la fecha de nacimiento
