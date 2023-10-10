@@ -56,7 +56,7 @@ const TEXTS = {
   },
   Slide3: {
     title: "¡Únete a nuestra comunidad y desbloquea recompensas exclusivas el día del lanzamiento!",
-    description: "Simplemente complete el formulario y estará en nuestra lista de espera. Al registrarte, recibirás como recompensa acceso anticipado a nuestra aplicación, además de obsequios, puntos y otras sorpresas. ¡Regístrese ahora y sea parte de esta emocionante revolución!",
+    description: "Al completar nuestro formulario, serás parte de la lista de espera para acceder a Sethor. Además, como recompensa por registrarte, obtendrás acceso anticipado a nuestra plataforma, regalos especiales, puntos y sorpresas adicionales. ¡Regístrate ahora y sé parte de esta emocionante revolución!",
   },
   Contact: {
     title: "¿Tiene alguna consulta?",
