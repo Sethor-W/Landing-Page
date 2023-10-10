@@ -2,10 +2,13 @@ import db from "@/config/firebase";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import React, { useState } from "react";
-import Label from "../Label/Label";
-import Textarea from "../Textarea/Textarea";
-import ButtonShare from "../ButtonShare/ButtonShare";
+import Label from "../Inputs/Label/Label";
+import Textarea from "../Inputs/Textarea/Textarea";
+import SectionShare from "../SectionShare/SectionShare";
+import Input from "../Inputs/Input/Input";
+import { SyncLoader } from "react-spinners";
 // import transporter from "@/config/email";
+
 
 const countries = [
     "Afganistán",
@@ -205,6 +208,21 @@ const countries = [
     "Zimbabue",
 ];
 
+const imgLogo = <div className="w-full">
+                  <img
+                    className="h-16 text-center lg:h-24 lg:mx-auto"
+                    src="/logo/Sethor-Logo.svg"
+                    alt="Sethor"
+                  />
+                </div>
+const imgLogoStatusSendEmail = <div className="w-full">
+                  <img
+                    className="h-16 text-center lg:h-24"
+                    src="/logo/Sethor-Logo.svg"
+                    alt="Sethor"
+                  />
+                </div>
+
 export default function Form() {
     
     const [changeButton_Loading, setChangeButton_Loading] = useState(false);
@@ -220,6 +238,7 @@ export default function Form() {
     const [face, setFace] = useState(false);
 
     
+
     const handleFechaChange = (e) => {
       const newDate = e.target.value;
       // Validación del formato de fecha usando una expresión regular (dd/mm/yyyy)
@@ -397,25 +416,55 @@ export default function Form() {
 
   return (
     <form
-        class="space-y-6"
         onSubmit={handleSubmit}
     >
       {/* Titulos */}
-      {statusSendEmail && (
-        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-          Bienvenido a Sethor
-        </h3>
-      )}
       {!loading && !statusSendEmail && (
-        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-          Llena la encuesta para ser parte de Sethor
-        </h3>
+        <div className="flex flex-col gap-5 w-full lg:flex-row-reverse lg:justify-between">
+          {imgLogo}
+          <h1 class="mb-4 text-2xl lg:text-4xl font-medium text-white">
+            Llena la encuesta para ser parte de Sethor
+          </h1>
+        </div>
       )}
+      {statusSendEmail && (
+        <>
+          {imgLogoStatusSendEmail}
+          <div className="flex flex-col gap-4">
+            <h1 className="mt-10 text-2xl font-medium text-white md:text-3xl lg:text-4xl">
+              Bienvenido a Sethor
+            </h1>
+            <p className="text-white text-sm font-normal md:text-base lg:text-lg">
+              Muchas gracias por completar la encuesta, seras de los primeros en saber
+              de nuestro lanzamiento, te hemos enviado un correo con el codigo para que
+              puedas acceder a los beneficios de la lista de espera.
+            </p>
+            <button
+              onClick={handleActiveForm}
+              className='text-black text-xl font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action px-10 py-5 text-center w-full rounded-3xl'
+            >
+              Agregar otra persona a la lista de espera
+            </button>
+            <SectionShare
+              link={'https://www.sethor.tech/'}
+              mail={mail}
+            />
+          </div>
+        </>
+      )}
+
 
       {/* Mensaje de Carga */}
       {loading && (
         <>
-          <p className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Espere un momento, se esta enviando su respuesta...</p>
+          {imgLogo}
+          <div className="flex flex-col items-center gap-6">
+            <p className="my-4 text-xl font-medium text-gray-900 dark:text-white">Espere un momento, se esta enviando su respuesta...</p>
+            <SyncLoader
+              color={'#fff'}
+              loading={true}
+            />
+          </div>
         </>
       )}
 
@@ -423,148 +472,122 @@ export default function Form() {
       {!loading && !statusSendEmail && (
       // {true && (
         <div className="form">
-          <div>
-            <label
-              for="name"
-              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-            >
-              Nombre completo
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Nombre"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              // required
-            />
-          </div>
-
-          <div>
-            <TextError>
-              {errorDate}
-            </TextError>
-            <label
-              for="name"
-              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-            >
-              Fecha de nacimiento
-            </label>
-            <input
-              type="text"
-              name="birthdate"
-              id="birthdate"
-              onChange={handleFechaChange}
-              placeholder="dd/mm/yyyy"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              // required
-            />
-          </div>
-
-          <div>
-            <label
-              for="email"
-              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-            >
-              Correo electrónico
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              placeholder="name@example.com"
-              // required
-            />
-          </div>
-
-          <div>
-            <label
-              for="country"
-              class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-            >
-              Tu país
-            </label>
-            <select
-              className="text-gray-900 text-base block w-full px-4 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
-              name="country"
-              // required
-            >
-              <option value="" className="text-gray-900 text-base">
-                Selecciona un país
-              </option>
-              {countries.map((country, index) => (
-                <option
-                  key={index}
-                  value={country}
-                  className="text-gray-900 text-base"
-                >
-                  {country}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="mt-5 text-gray-800 text-base">
-            <Label forHTML={"ref_email"}>
-              {optionRef === 'correo' ? 'Correo' : 'Código'} de referido <span className="text-gray-800 text-base dark:text-white italic">(Opcional)</span>
-            </Label>
-            Elije una opción de referido:
-            <div className="flex gap-10">
-              <label className="">
-                <input
-                  type="radio"
-                  name="ref_email"
-                  id="ref_email"
-                  value="correo"
-                  checked={optionRef === 'correo'}
-                  onChange={handleOptionRefChange}
-                />
-                <span className="text-gray-800 text-base dark:text-white italic ml-2">Correo</span>
-              </label>
-              <label className="text-gray-800 text-base dark:text-white italic">
-                <input
-                  type="radio"
-                  name="ref_code"
-                  id="ref_code"
-                  value="codigo"
-                  checked={optionRef === 'codigo'}
-                  onChange={handleOptionRefChange}
-                />
-                <span className="text-gray-800 text-base dark:text-white italic ml-2">Código</span>
-              </label>
-            </div>
-            {optionRef === 'correo' ? (
-              <input
-                type="email"
-                name="referral"
-                id="referral"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="ref@example.com"
-              />
-            ) : (
-              <input
+          <div className="lg:grid lg:grid-cols-2 lg:gap-10">
+            <div>
+              <Label forHTML={"name"}>Nombre completo</Label>
+              <Input
                 type="text"
-                name="referral"
-                id="referral"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="SETHOR2023"
+                name="name"
+                id="name"
+                placeholder="Nombre"
+                required={true}
               />
-            )}
+            </div>
+
+            <div>
+              <Label forHTML={"birthdate"}>Fecha de nacimiento</Label>
+              <TextError>{errorDate}</TextError>
+              <Input
+                onChange={handleFechaChange}
+                type="text"
+                name="birthdate"
+                id="birthdate"
+                placeholder="dd/mm/yyyy"
+                // required={true}
+              />
+            </div>
+
+            <div>
+              <Label forHTML={"email"}>Correo electrónico</Label>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="sethor@example.com"
+                // required={true}
+              />
+            </div>
+
+            <div>
+              <Label forHTML={"country"}>Tu país</Label>
+              <select
+                className="bg-black/5 text-white/[.9] border border-[#898989] text-sm block w-full px-5 py-3 rounded-xl focus:outline-none"
+                name="country"
+                // required
+              >
+                <option value="" className="text-gray-900 text-base bg-black/5">
+                  Selecciona un país
+                </option>
+                {countries.map((country, index) => (
+                  <option
+                    key={index}
+                    value={country}
+                    className="text-gray-900 text-base"
+                  >
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </div>
+            
+            <div className="mt-5 text-gray-800 text-base">
+              <h2 className="text-2xl font-bold">
+                {optionRef === 'correo' ? 'Correo' : 'Código'} de referido (Opcional)
+              </h2>
+              <Label>
+                Elije una opción de referido:
+              </Label>
+              <div className="flex gap-10">
+                <label>
+                  <input
+                    type="radio"
+                    name="ref_email"
+                    id="ref_email"
+                    value="correo"
+                    checked={optionRef === 'correo'}
+                    onChange={handleOptionRefChange}
+                  />
+                  <span className="text-gray-800 text-base dark:text-white ml-2">Correo</span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="ref_code"
+                    id="ref_code"
+                    value="codigo"
+                    checked={optionRef === 'codigo'}
+                    onChange={handleOptionRefChange}
+                  />
+                  <span className="text-gray-800 text-base dark:text-white ml-2">Código</span>
+                </label>
+              </div>
+              {optionRef === 'correo' ? (
+                <Input
+                  type="email"
+                  name="referral"
+                  id="referral"
+                  placeholder="sethor.ref@example.com"
+                  // required={true}
+                />
+              ) : (
+                <Input
+                  type="text"
+                  name="referral"
+                  id="referral"
+                  placeholder="SETHOR2023"
+                  // required={true}
+                />
+              )}
+            </div>
           </div>
 
-          <hr className="my-5" />
+
+          <hr className="my-8" />
 
           <div>
-            <Label forHTML={""}>
-              Con cual prefieres pagar: 
-            </Label>
-            <div className="flex flex-row items-center gap-10 mb-7 py-5">
-              <div className="flex flex-row items-center gap-4">
-                <label
-                    className="text-gray-900 text-base dark:text-white"
-                    htmlFor="fingerprint"
-                >Huella digital</label>
+            <Label>Con cual prefieres pagar: </Label>
+            <div className="flex flex-row items-center gap-7 mb-7">
+              <div className="flex flex-row items-center gap-2">
                 <input
                   className="m-0 cursor-pointer"
                   type="checkbox"
@@ -572,12 +595,12 @@ export default function Form() {
                   name="fingerprint"
                   onChange={() => setFingerprint(!fingerprint)}
                 />
-              </div>
-              <div className="flex flex-row items-center gap-4">
                 <label
-                    className="text-gray-900 text-base dark:text-white"
-                    htmlFor="face"
-                >Rostro</label>
+                    className="text-sm text-white font-normal"
+                    htmlFor="fingerprint"
+                >Huella digital</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
                 <input
                   className="m-0 cursor-pointer"
                   type="checkbox"
@@ -585,6 +608,10 @@ export default function Form() {
                   name="face"
                   onChange={() => setFace(!face)}
                 />
+                <label
+                    className="text-sm text-white font-normal"
+                    htmlFor="face"
+                >Rostro</label>
               </div>
             </div>
           </div>
@@ -593,12 +620,10 @@ export default function Form() {
             <Label forHTML={"suggestion_opinion"}>
               ¿Que sugerencia o herramienta te gustaría que tomemos en consideración para la creación de la aplicación?
             </Label>
-            <Textarea name={"suggestion_opinion"} id={"suggestion_opinion"} />
+            <Textarea name={"suggestion_opinion"} id={"suggestion_opinion"} placeholder={'Tu sugerencia aquí...'} />
           </div>
-
-          <hr />
           
-          <p className="text-gray-900 mt-5 text-base dark:text-white italic">
+          <p className="text-white mt-8 mb-10 text-sm font-normal italic">
             Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios.
           </p>
           {error && (
@@ -609,19 +634,11 @@ export default function Form() {
         </div>
       )}
 
-      {statusSendEmail && (
-        <p className="text-gray-900 text-base font-medium dark:text-white">
-          Muchas gracias por completar la encuesta, seras de los primeros en saber
-          de nuestro lanzamiento, te hemos enviado un correo con el codigo para que
-          puedas acceder a los beneficios de la lista de espera.
-        </p>
-      )}
-
       {/* Buttons */}
       {loading || changeButton_Loading && (
         <button
           disabled={true}
-          class="w-full text-white bg-blue-400 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className='text-white/[.8] text-xl font-bold bg-[#5befe6]/[.8] box-shadow-button-action py-5 text-center w-full rounded-3xl'
         >
           Enviando...
         </button>
@@ -629,24 +646,10 @@ export default function Form() {
       {!changeButton_Loading && !loading && !statusSendEmail && (
         <button
           type="submit"
-          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className='text-black text-xl font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action py-5 text-center w-full rounded-3xl'
         >
-          Unirse
+          Unirse a la lista de espera
         </button>
-      )}
-      {statusSendEmail && (
-        <>
-          <button
-            onClick={handleActiveForm}
-            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Agregar a otra persona a la lista de espera
-          </button>
-          <ButtonShare
-            link={'https://www.sethor.tech/'}
-            mail={mail}
-          />
-        </>
       )}
     </form>
   );

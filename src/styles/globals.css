@@ -120,39 +120,6 @@ input, textarea {
 
 
 
-@media (min-width: 640px) {
-  footer, nav{
-    padding: 0 3rem !important;
-  }
-  section.body{
-    padding: 5rem 3rem;
-  }
-}
-@media (min-width: 768px) {
-  footer, nav{
-    padding: 0 5rem !important;
-  }
-  section.body{
-    padding: 5rem 5rem;
-  }
-}
-@media (min-width: 1024px) {
-  footer, nav{
-    padding: 2rem 10rem !important;
-  }
-  section.body{
-    padding: 5rem 10rem;
-  }
-}
-@media (min-width: 1280px) {
-  footer, nav{
-    padding: 0 10rem !important;
-  }
-  section.body{
-   padding: 5rem 10rem;
-  }
-}
-
 
 /* Animacion button */
 a {
