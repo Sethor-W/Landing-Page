@@ -130,7 +130,7 @@ export default function Home() {
           </section>
         </section>
 
-        {/* <section className='px-5 md:px-28 xl:px-40 py-20 bg-section2 flex flex-col gap-10'>
+        <section className='px-5 md:px-28 xl:px-40 py-20 bg-section2 flex flex-col gap-10'>
           <div className='flex flex-col md:flex-row xl:grid xl:grid-cols-3  items-start justify-center gap-8 '>
             <h1 className='text-4xl xl:text-5xl capitalize text-left xl:col-span-2'>{TEXTS.Slide2.title}</h1>
             <div className='flex flex-col items-start justify-center gap-8 relative xl:col-span-1'>
@@ -150,9 +150,14 @@ export default function Home() {
           <div id='features' className='mx-auto w-[80vw] h-[70vh] md:w-[60vw] flex items-center justify-center'>
             <Video />
           </div>
-        </section> */}
+          {/* <video
+            id='features'
+            className='my-10'
+            src="/video/video.mp4"
+          > */}
+        </section>
 
-        {/* <section className='bg-[url(/img/Secion-3-Background.png)] bg-no-repeat bg-cover'>
+        <section className='bg-[url(/img/Secion-3-Background.png)] bg-no-repeat bg-cover'>
           <section className='px-5 md:px-28 xl:px-40 py-[7.5rem] bg-gradient-section1-bg'>
             <div className='bg-black/50 rounded-[2rem] py-10 px-5 md:p-16 lg:flex lg:flex-row lg:items-center lg:gap-12'>
               <div className='flex flex-col items-start justify-center gap-8 lg:w-[80%] xl:w-[50%]'>
@@ -174,7 +179,7 @@ export default function Home() {
               </div>
             </div>
           </section>
-        </section> */}
+        </section>
       </main>
       <Footer />
     </div>
