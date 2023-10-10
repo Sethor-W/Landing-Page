@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NetShare from '../Buttons/NetShare';
+import NetShare from '../Buttons/NetShare/NetShare';
 
 export default function SectionShare({link, mail}) {
 

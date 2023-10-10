@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import ButtonActivePopup from "../Buttons/ButtonActivePopup";
+import ButtonActivePopup from "../Buttons/ButtonActivePopup/ButtonActivePopup";
 
 const links = [
   { label: "Sobre Nosotros", link: "" },

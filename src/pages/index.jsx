@@ -10,9 +10,9 @@ import Footer from './landing/components/Footer/Footer'
 import Link from 'next/link'
 import Form from './landing/components/Form/Form'
 import Video from './landing/components/Video/Video'
-import LearnMore from './landing/components/Buttons/LearnMore'
+import LearnMore from './landing/components/Buttons/LearnMore/LearnMore'
 import P from './landing/components/Text/P'
-import ButtonActivePopup from './landing/components/Buttons/ButtonActivePopup'
+import ButtonActivePopup from './landing/components/Buttons/ButtonActivePopup/ButtonActivePopup'
 
 const inter = Inter({ subsets: ['latin'] })
 
