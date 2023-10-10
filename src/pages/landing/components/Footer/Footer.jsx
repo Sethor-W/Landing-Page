@@ -5,10 +5,10 @@ import P from '../Text/P'
 export default function Footer() {
   return (
     <footer className='bg-black px-5 md:px-28 xl:px-40 py-12'>
-          <div className='flex flex-col lg:items-center lg:px-40 xl:px-80 items-start justify-center gap-3 text-center'>
+          <div className='flex flex-col lg:items-center lg:px-40 xl:px-60 items-start justify-center gap-3 text-center'>
             <h1 className='text-4xl capitalize text-left'>¿Tiene alguna consulta?</h1>
             <p className={`text-left text-[var(--letter-sub-color)] md:text-lg lg:text-center`}>
-              Si tiene una consulta general y desea hablar con nuestro equipo de expertos, puede contactarnos por correo electrónico a: info@sethor.tech
+              Si tiene alguna pregunta o necesita asistencia, no dude en ponerse en contacto con nuestro equipo de expertos. Estamos aquí para ayudar. Puede enviarnos un correo electrónico a: info@sethor.tech
             </p>
             <Link
               id='contact'
