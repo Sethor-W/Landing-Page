@@ -459,7 +459,7 @@ export default function Form() {
         <>
           {imgLogo}
           <div className="flex flex-col items-center gap-6">
-            <p className="my-4 text-xl font-medium text-gray-900 dark:text-white">Espere un momento, se esta enviando su respuesta...</p>
+            <p className="my-4 text-xl font-medium text-white">Espere un momento, se esta enviando su respuesta...</p>
             <SyncLoader
               color={'#fff'}
               loading={true}
@@ -547,7 +547,7 @@ export default function Form() {
                     checked={optionRef === 'correo'}
                     onChange={handleOptionRefChange}
                   />
-                  <span className="text-gray-800 text-base dark:text-white ml-2">Correo</span>
+                  <span className="text-base text-white ml-2">Correo</span>
                 </label>
                 <label>
                   <input
@@ -558,7 +558,7 @@ export default function Form() {
                     checked={optionRef === 'codigo'}
                     onChange={handleOptionRefChange}
                   />
-                  <span className="text-gray-800 text-base dark:text-white ml-2">Código</span>
+                  <span className="text-base text-white ml-2">Código</span>
                 </label>
               </div>
               {optionRef === 'correo' ? (
