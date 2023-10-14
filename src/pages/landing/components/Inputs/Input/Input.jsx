@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Input({type, name, id, placeholder, required=false, onChange=undefined}) {
+export default function Input({type, name, id, placeholder, required=false, onChange=undefined, value}) {
   return (
     <input
         onChange={onChange}
-
+        value={value}
         type={type}
         name={name}
         id={id}

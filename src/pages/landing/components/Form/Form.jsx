@@ -236,21 +236,32 @@ export default function Form() {
 
     const [fingerprint, setFingerprint] = useState(false);
     const [face, setFace] = useState(false);
-
     
 
     const handleFechaChange = (e) => {
-      const newDate = e.target.value;
-      // Validación del formato de fecha usando una expresión regular (dd/mm/yyyy)
-      const validFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(newDate);
+      const inputValue = e.target.value;
       
-      if (validFormat) {
-        setErrorDate('');
-        setBirthDate(newDate);
-      } else {
-        setErrorDate('El formato de fecha debe ser dd/mm/yyyy');
+      // Elimina todos los caracteres que no sean dígitos y las barras
+      const formattedValue = inputValue.replace(/[^0-9/]/g, '');
+      let formattedDate = formattedValue;
+
+      if (birthDate.length < formattedDate.length) {
+        if (formattedDate.length === 2 || formattedDate.length === 5) {
+          formattedDate += '/';
+        }
       }
+          
+      const validFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(formattedDate)
+      if (!validFormat) {
+        setErrorDate('El formato de fecha debe ser dd/mm/yyyy');
+      } else {
+        setErrorDate('');
+      }
+
+      setBirthDate(formattedDate);
+
     };
+
 
     const handleOptionRefChange = (e) => {
       setOptionRef(e.target.value);
@@ -315,10 +326,14 @@ export default function Form() {
     }
 
     const handleSubmit = async (e) => {
+      
         e.preventDefault();
+
         setChangeButton_Loading(true)
         setError(null);
+
         let referralUpperCase = null;
+
         try {
             const name = e.target.name.value;
             const email = e.target.email.value;
@@ -364,11 +379,11 @@ export default function Form() {
               setError(error);
               throw new Error(error);
             }
-            if (!suggestion_opinion) {
-              const error = "La sugerencia u opinion es un campo obligatorio";
-              setError(error);
-              throw new Error(error);
-            }
+            // if (!suggestion_opinion) {
+            //   const error = "La sugerencia u opinion es un campo obligatorio";
+            //   setError(error);
+            //   throw new Error(error);
+            // }
 
             // Verifica si el usuario ya existe en la colección
             const userQuery = query(
@@ -384,7 +399,15 @@ export default function Form() {
             }
 
             
+            
+            const dateNow = new Date();
+            const year = dateNow.getFullYear();
+            const month = dateNow.getMonth() + 1; // Meses en JavaScript son 0-indexados, por lo que sumamos 1
+            const day = dateNow.getDate();
+            const dateRegister = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
             const uniqueCode = await generateShortUniqueCode(6);
+
             await addDoc(collection(db, "user_wait_list"), {
                 name: name,
                 email: email,
@@ -397,9 +420,12 @@ export default function Form() {
                   face: face,
                 },
                 code: uniqueCode,
+                created: dateRegister,
+                updated: dateRegister,
             });
             await sendEmail(email, uniqueCode, name);
             setMail(email);
+            setBirthDate("");
         } catch (error) {
             console.error(error);
         }
@@ -453,7 +479,6 @@ export default function Form() {
         </>
       )}
 
-
       {/* Mensaje de Carga */}
       {loading && (
         <>
@@ -486,15 +511,16 @@ export default function Form() {
 
             <div>
               <Label forHTML={"birthdate"}>Fecha de nacimiento</Label>
-              <TextError>{errorDate}</TextError>
               <Input
-                onChange={handleFechaChange}
                 type="text"
                 name="birthdate"
                 id="birthdate"
                 placeholder="dd/mm/yyyy"
-                // required={true}
+                value={birthDate}
+                onChange={handleFechaChange}
+                required={true}
               />
+              <TextError>{errorDate}</TextError>
             </div>
 
             <div>
@@ -504,7 +530,7 @@ export default function Form() {
                 name="email"
                 id="email"
                 placeholder="sethor@example.com"
-                // required={true}
+                required={true}
               />
             </div>
 
@@ -513,7 +539,7 @@ export default function Form() {
               <select
                 className="bg-black/5 text-white/[.9] border border-[#898989] text-sm block w-full px-5 py-3 rounded-xl focus:outline-none"
                 name="country"
-                // required
+                required
               >
                 <option value="" className="text-gray-900 text-base bg-black/5">
                   Selecciona un país
@@ -627,9 +653,11 @@ export default function Form() {
             Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios.
           </p>
           {error && (
-            <TextError>
-              {error}
-            </TextError>
+            <div className="mb-7">
+              <TextError>
+                {error}
+              </TextError>
+            </div>
           )}
         </div>
       )}
