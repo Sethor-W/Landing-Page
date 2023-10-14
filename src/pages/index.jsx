@@ -67,7 +67,7 @@ const TEXTS = {
 
 export default function Home() {
 
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   
   const handleActive = () => {
