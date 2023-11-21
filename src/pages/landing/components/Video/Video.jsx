@@ -2,14 +2,14 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ReactPlayer from 'react-player';
+import { videoYT } from '../../../../../public/data/links/Links';
 
-const videoYT = "https://www.youtube.com/watch?v=rv35m-qCq9U";
+// const videoYT = "https://www.youtube.com/watch?v=rv35m-qCq9U";
 
 export default function Video() {
 
   return (
     <ReactPlayer
-      
       url={videoYT}
       loop={true}
       // playing={true}

@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import ButtonActivePopup from "../Buttons/ButtonActivePopup/ButtonActivePopup";
-
-const links = [
-  { label: "Sobre Nosotros", link: "" },
-  { label: "Características", link: "#features" },
-  { label: "Contacto", link: "#contact" },
-];
-
-const Waitlist = "Unirse a la lista de espera";
+import { TEXTS_BUTTONS } from "../../../../../public/data/buttons/TextLanding";
+import { LinksNav } from "../../../../../public/data/links/Nav";
 
 
 export default function NavBar({handleActivePopup}) {
+  
   const [active, setActive] = useState(false);
 
   const handleActive = () => {
     setActive(!active);
   };
-
   const handleActivePopupNavBar = () => {
     handleActivePopup();
     setActive(false);
@@ -40,7 +34,7 @@ export default function NavBar({handleActivePopup}) {
               className='text-[var(--background-button-action-rgb)] text-sm font-bold py-2 px-3 rounded-xl border border-[var(--background-button-action-rgb)] text-center mr-3'
               onClick={handleActivePopup}
             >
-              {Waitlist}
+              {TEXTS_BUTTONS.Waitlist}
             </button>
             <button
               onClick={handleActive}
@@ -58,7 +52,7 @@ export default function NavBar({handleActivePopup}) {
               src="/NavBar/Close-Icon.svg"
               alt="Close"
             />
-            {links.map(({ link, label }) => (
+            {LinksNav.map(({ link, label }) => (
               <li key={label}>
                 <Link
                   href={link}
@@ -75,7 +69,7 @@ export default function NavBar({handleActivePopup}) {
               className='text-[var(--background-button-action-rgb)] text-lg font-bold py-4 px-5 rounded-2xl border border-[var(--background-button-action-rgb)]'
               onClick={handleActivePopupNavBar}
             >
-              {Waitlist}
+              {TEXTS_BUTTONS.Waitlist}
             </button>
           </ul>
           

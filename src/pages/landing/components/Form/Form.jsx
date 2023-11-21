@@ -398,8 +398,6 @@ export default function Form() {
                 throw new Error(error);
             }
 
-            
-            
             const dateNow = new Date();
             const year = dateNow.getFullYear();
             const month = dateNow.getMonth() + 1; // Meses en JavaScript son 0-indexados, por lo que sumamos 1
@@ -423,7 +421,7 @@ export default function Form() {
                 created: dateRegister,
                 updated: dateRegister,
             });
-            await sendEmail(email, uniqueCode, name);
+            // await sendEmail(email, uniqueCode, name);
             setMail(email);
             setBirthDate("");
         } catch (error) {
@@ -461,8 +459,11 @@ export default function Form() {
               Bienvenido a Sethor
             </h1>
             <p className="text-white text-sm font-normal md:text-base lg:text-lg">
-              Muchas gracias por completar la encuesta, seras de los primeros en saber
+              {/* Muchas gracias por completar la encuesta, seras de los primeros en saber
               de nuestro lanzamiento, te hemos enviado un correo con el codigo para que
+              puedas acceder a los beneficios de la lista de espera. */}
+              Muchas gracias por completar la encuesta, seras de los primeros en saber
+              de nuestro lanzamiento, te enviaremos un correo con el codigo para que
               puedas acceder a los beneficios de la lista de espera.
             </p>
             <button

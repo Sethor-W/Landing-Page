@@ -1,0 +1,1 @@
+export const MAIL = "info@sethor.tech"
