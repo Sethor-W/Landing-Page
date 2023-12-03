@@ -24,7 +24,7 @@ export default function SectionVideo({title, description}) {
         </div>
       </div>
       <div id='features' className='mx-auto w-[80vw] h-[70vh] md:w-[60vw] flex items-center justify-center'>
-        {/* <Video /> */}
+        <Video />
       </div>
       {/* <video
         id='features'
