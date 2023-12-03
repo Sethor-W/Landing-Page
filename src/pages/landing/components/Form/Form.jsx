@@ -405,21 +405,21 @@ export default function Form() {
 
             const uniqueCode = await generateShortUniqueCode(6);
 
-            // await addDoc(collection(db, "user_wait_list"), {
-            //     name: name,
-            //     email: email,
-            //     birthDate: birthDate,
-            //     country: country,
-            //     referral: referralUpperCase,
-            //     suggestion_opinion,
-            //     payment_preference: {
-            //       fingerprint: fingerprint,
-            //       face: face,
-            //     },
-            //     code: uniqueCode,
-            //     created: dateRegister,
-            //     updated: dateRegister,
-            // });
+            await addDoc(collection(db, "user_wait_list"), {
+                name: name,
+                email: email,
+                birthDate: birthDate,
+                country: country,
+                referral: referralUpperCase,
+                suggestion_opinion,
+                payment_preference: {
+                  fingerprint: fingerprint,
+                  face: face,
+                },
+                code: uniqueCode,
+                created: dateRegister,
+                updated: dateRegister,
+            });
             // await sendEmail(email, uniqueCode, name);
             setMail(email);
             setBirthDate("");
