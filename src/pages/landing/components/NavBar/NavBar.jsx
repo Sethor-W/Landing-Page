@@ -5,7 +5,7 @@ import { TEXTS_BUTTONS } from "../../../../../public/data/buttons/TextLanding";
 import { LinksNav } from "../../../../../public/data/links/Nav";
 
 
-export default function NavBar({handleActivePopup}) {
+export default function NavBar({handleActivePopupForm, handleActivePopupContact}) {
   
   const [active, setActive] = useState(false);
 
@@ -13,7 +13,7 @@ export default function NavBar({handleActivePopup}) {
     setActive(!active);
   };
   const handleActivePopupNavBar = () => {
-    handleActivePopup();
+    handleActivePopupForm();
     setActive(false);
   };
   
@@ -32,7 +32,7 @@ export default function NavBar({handleActivePopup}) {
           <div class="flex md:order-2 lg:hidden">
             <button
               className='text-[var(--background-button-action-rgb)] text-sm font-bold py-2 px-3 rounded-xl border border-[var(--background-button-action-rgb)] text-center mr-3'
-              onClick={handleActivePopup}
+              onClick={handleActivePopupForm}
             >
               {TEXTS_BUTTONS.Waitlist}
             </button>
@@ -52,18 +52,34 @@ export default function NavBar({handleActivePopup}) {
               src="/NavBar/Close-Icon.svg"
               alt="Close"
             />
-            {LinksNav.map(({ link, label }) => (
-              <li key={label}>
-                <Link
-                  href={link}
-                  smooth={true}
-                  onClick={handleActive}
-                  offset={-100}
-                  class="block py-2 pl-3 pr-4 rounded hover:text-violet-500 md:hover:bg-transparent md:p-0 md:text-base"
-                >
-                  {label}
-                </Link>
-              </li>
+            {LinksNav.map((data, index) => (
+              <>
+                {!data.activePopup ? 
+                  <li key={data.label}>
+                    <Link
+                      href={data.link}
+                      smooth={true}
+                      onClick={handleActive}
+                      offset={-100}
+                      class="block py-2 pl-3 pr-4 rounded hover:text-violet-500 md:hover:bg-transparent md:p-0 md:text-base"
+                    >
+                      {data.label}
+                    </Link>
+                  </li>
+                :
+                  <li key={data.label}>
+                    <Link
+                      href={data.link}
+                      smooth={true}
+                      onClick={handleActivePopupContact}
+                      offset={-100}
+                      class="block py-2 pl-3 pr-4 rounded hover:text-violet-500 md:hover:bg-transparent md:p-0 md:text-base"
+                    >
+                      {data.label}
+                    </Link>
+                  </li>
+                }
+              </>
             ))}
             <button
               className='text-[var(--background-button-action-rgb)] text-lg font-bold py-4 px-5 rounded-2xl border border-[var(--background-button-action-rgb)]'

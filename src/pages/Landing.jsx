@@ -5,29 +5,57 @@ import Form from './landing/components/Form/Form';
 import NavBar from './landing/components/NavBar/NavBar';
 import SectionVideo from './landing/components/Sections/SectionVideo';
 import Footer from './landing/components/Footer/Footer';
-import { Slide2 } from '../../public/data/sections/Sections';
+import { Contact, Slide2 } from '../../public/data/sections/Sections';
 import SectionPrincipal from './landing/components/Sections/SectionPrincipal';
 import Link from 'next/link';
 import { IoMdArrowRoundUp } from "react-icons/io";
+import { TEXTS_BUTTONS } from '../../public/data/buttons/TextLanding';
+import { MAIL } from '../../public/data/contact/Contact';
 
 export default function Landing() {
 
-    const [active, setActive] = useState(false);
+    const [activePopupForm, setActivePopupForm] = useState(false);
+    const [activePopupContact, setActivePopupContact] = useState(false);
 
-    const handleActive = () => {
-      setActive(true);
+    const handleActivePopupForm = () => {
+      setActivePopupForm(true);
     };
-    const handleDesactive = () => {
-      setActive(false);
+    const handleDesactivePopupForm = () => {
+      setActivePopupForm(false);
     };
+
+    const handleActivePopupContact = () => {
+      setActivePopupContact(true);
+    };
+    const handleDesactivePopupContact = () => {
+      setActivePopupContact(false);
+    };
+
 
   return (
     <>
       <Popup
-        active={active}
-        handleDesactive={handleDesactive}
+        active={activePopupForm}
+        handleDesactive={handleDesactivePopupForm}
       >
         <Form/>
+      </Popup>
+      <Popup
+        active={activePopupContact}
+        handleDesactive={handleDesactivePopupContact}
+      >
+        <div className='flex flex-col lg:items-center lg:px-40 xl:px-60 items-start justify-center gap-3 text-center'>
+          <h1 className='text-4xl capitalize text-left'>{Contact.title}</h1>
+          <p className={`text-left text-[var(--letter-sub-color)] md:text-lg lg:text-center`}>{Contact.description}</p>
+          <Link
+            id='contact'
+            className='text-black text-lg font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action py-4 px-7 mt-7 rounded-2xl'
+            href={`mailto:${MAIL}`}
+            target='_blank'
+          >
+            {TEXTS_BUTTONS.Contact}
+          </Link>
+        </div>
       </Popup>
       <Link 
         href={"#home"}
@@ -38,8 +66,8 @@ export default function Landing() {
       <main>
         <section id='home' className='bg-[url(/img/Hero-Background.png)] bg-top bg-no-repeat bg-cover'>
           <section className='bg-gradient-section1-bgs'>
-            <NavBar handleActivePopup={handleActive}/>
-            <SectionPrincipal handleActivePopup={handleActive} />
+            <NavBar handleActivePopupForm={handleActivePopupForm} handleActivePopupContact={handleActivePopupContact}/>
+            <SectionPrincipal handleActivePopup={handleActivePopupForm} />
           </section>
         </section>
         <section className='bg-[url(/img/Secion-3-Background.png)] bg-no-repeat bg-cover'>
@@ -54,7 +82,7 @@ export default function Landing() {
                 <P>{TEXTS.Slide3.description}</P>
                 <div className="options flex flex-row gap-3">
                   <ButtonActivePopup
-                    onClick={handleActive}
+                    onClick={handleActivePopupForm}
                     text={TEXTS_BUTTONS.Waitlist}
                   />
                   <Link
