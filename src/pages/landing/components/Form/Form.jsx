@@ -7,6 +7,7 @@ import Textarea from "../Inputs/Textarea/Textarea";
 import SectionShare from "../SectionShare/SectionShare";
 import Input from "../Inputs/Input/Input";
 import { SyncLoader } from "react-spinners";
+import { TEXTS_BUTTONS } from "../../../../../public/data/buttons/TextLanding";
 // import transporter from "@/config/email";
 
 
@@ -326,9 +327,7 @@ export default function Form() {
     }
 
     const handleSubmit = async (e) => {
-      
         e.preventDefault();
-
         setChangeButton_Loading(true)
         setError(null);
 
@@ -340,7 +339,7 @@ export default function Form() {
             const country = e.target.country.value;
             const referral = e.target.referral.value;
             const suggestion_opinion = e.target.suggestion_opinion.value;
-            
+
             if (optionRef === 'correo' && referral) {
                 const refQuery = query(
                   collection(db, "user_wait_list"),
@@ -349,7 +348,7 @@ export default function Form() {
                 const querySnapshot = await getDocs(refQuery);
   
                 if (querySnapshot.empty) {
-                  const error = "El referido debe registrarse en la lista de espera.";
+                  const error = "El referido debe registrarse primero en la lista del club Sethor.";
                   setError(error);
                   throw new Error(error);
                 }
@@ -406,21 +405,21 @@ export default function Form() {
 
             const uniqueCode = await generateShortUniqueCode(6);
 
-            await addDoc(collection(db, "user_wait_list"), {
-                name: name,
-                email: email,
-                birthDate: birthDate,
-                country: country,
-                referral: referralUpperCase,
-                suggestion_opinion,
-                payment_preference: {
-                  fingerprint: fingerprint,
-                  face: face,
-                },
-                code: uniqueCode,
-                created: dateRegister,
-                updated: dateRegister,
-            });
+            // await addDoc(collection(db, "user_wait_list"), {
+            //     name: name,
+            //     email: email,
+            //     birthDate: birthDate,
+            //     country: country,
+            //     referral: referralUpperCase,
+            //     suggestion_opinion,
+            //     payment_preference: {
+            //       fingerprint: fingerprint,
+            //       face: face,
+            //     },
+            //     code: uniqueCode,
+            //     created: dateRegister,
+            //     updated: dateRegister,
+            // });
             // await sendEmail(email, uniqueCode, name);
             setMail(email);
             setBirthDate("");
@@ -470,7 +469,8 @@ export default function Form() {
               onClick={handleActiveForm}
               className='text-black text-xl font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action px-10 py-5 text-center w-full rounded-3xl'
             >
-              Agregar otra persona a la lista de espera
+              {/* Agregar otra persona a la lista de espera */}
+              Unir a otra persona al club Sethor
             </button>
             <SectionShare
               link={'https://www.sethor.tech/'}
@@ -594,7 +594,6 @@ export default function Form() {
                   name="referral"
                   id="referral"
                   placeholder="sethor.ref@example.com"
-                  // required={true}
                 />
               ) : (
                 <Input
@@ -602,44 +601,24 @@ export default function Form() {
                   name="referral"
                   id="referral"
                   placeholder="SETHOR2023"
-                  // required={true}
                 />
               )}
             </div>
           </div>
-
-
           <hr className="my-8" />
-
           <div>
             <Label>Con cual prefieres pagar: </Label>
             <div className="flex flex-row items-center gap-7 mb-7">
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  className="m-0 cursor-pointer"
-                  type="checkbox"
-                  id="fingerprint"
-                  name="fingerprint"
-                  onChange={() => setFingerprint(!fingerprint)}
-                />
-                <label
-                    className="text-sm text-white font-normal"
-                    htmlFor="fingerprint"
-                >Huella digital</label>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  className="m-0 cursor-pointer"
-                  type="checkbox"
-                  id="face"
-                  name="face"
-                  onChange={() => setFace(!face)}
-                />
-                <label
-                    className="text-sm text-white font-normal"
-                    htmlFor="face"
-                >Rostro</label>
-              </div>
+              <OptionInput
+                label={'Huella digital'}
+                onClick={()=>setFingerprint(!fingerprint)}
+                state={fingerprint}
+              />
+              <OptionInput
+                label={'Rostro'}
+                onClick={() => setFace(!face)}
+                state={face}
+              />
             </div>
           </div>
 
@@ -676,9 +655,7 @@ export default function Form() {
         <button
           type="submit"
           className='text-black text-xl font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action py-5 text-center w-full rounded-3xl'
-        >
-          Unirse a la lista de espera
-        </button>
+        >{TEXTS_BUTTONS.WaitlistForm}</button>
       )}
     </form>
   );
@@ -692,4 +669,12 @@ const TextError = ({children}) => {
       </p>
   )
 }
-
+const OptionInput = ({label, onClick, state}) => {
+  return (
+    <div className="flex flex-row items-center gap-2 cursor-pointer" onClick={onClick}>
+      <div className={`w-[6px] h-[6px] p-1 rounded-fulls border-2 border-white ${state ? 'bg-blue-500' : 'bg-white'} `}></div>
+      <label className="text-sm text-white font-normal cursor-pointer"
+      >{label}</label>
+    </div>
+  )
+}

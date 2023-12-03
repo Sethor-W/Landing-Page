@@ -1,6 +1,9 @@
 export const Slide1 = {
-    title: "La revolución de los pagos biométricos se convierte en realidad.",
-    description: "Bienvenido a Sethor. ¡Donde pagar con el rostro o la huella en cualquier lugar y en cualquier momento ya no será cosa del futuro!",
+    // title: "La revolución de los pagos biométricos se convierte en realidad.",
+    title1: "¡Tu Pase a la Exclusividad!",
+    title2: "Únete al Club Sethor y Vive la Experiencia de formar Parte de la Nueva Era de los Pagos",
+    // description: "Bienvenido a Sethor. ¡Donde pagar con el rostro o la huella en cualquier lugar y en cualquier momento ya no será cosa del futuro!",
+    description: "Al unirte en el club Sethor serás uno de nuestros miembros de lujos los cuales cuentan con increíbles beneficios exclusivos como: ",
 };
 export const Slide2 = {
     title: "La próxima generación en compras sin límites",

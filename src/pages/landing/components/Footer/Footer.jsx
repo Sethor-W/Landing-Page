@@ -8,7 +8,7 @@ import { MAIL } from '../../../../../public/data/contact/Contact'
 export default function Footer() {
   return (
     <footer className='bg-black px-5 md:px-28 xl:px-40 py-12'>
-      <div className='flex flex-col lg:items-center lg:px-40 xl:px-60 items-start justify-center gap-3 text-center'>
+      {/* <div className='flex flex-col lg:items-center lg:px-40 xl:px-60 items-start justify-center gap-3 text-center'>
         <h1 className='text-4xl capitalize text-left'>{Contact.title}</h1>
         <p className={`text-left text-[var(--letter-sub-color)] md:text-lg lg:text-center`}>{Contact.description}</p>
         <Link
@@ -20,7 +20,7 @@ export default function Footer() {
           {TEXTS_BUTTONS.Contact}
         </Link>
       </div>
-      <hr className='my-7' />
+      <hr className='my-7' /> */}
       <div className='flex flex-col lg:grid lg:grid-cols-3 lg:items-center lg:justify-between items-start justify-center gap-10'>
         <img
           className='w-40 text-sm'

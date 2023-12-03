@@ -3,16 +3,12 @@ import { useState } from 'react';
 import Popup from './landing/components/Popup/Popup';
 import Form from './landing/components/Form/Form';
 import NavBar from './landing/components/NavBar/NavBar';
-import P from './landing/components/Text/P';
-import ButtonActivePopup from './landing/components/Buttons/ButtonActivePopup/ButtonActivePopup';
-import CarruselContainer from './landing/components/Carrusel/CarruselContainer';
-import CarruselCart from './landing/components/Carrusel/CarruselCart';
 import SectionVideo from './landing/components/Sections/SectionVideo';
 import Footer from './landing/components/Footer/Footer';
-import { TEXTS_BUTTONS } from '../../public/data/buttons/TextLanding';
-import { Slide1, Slide2 } from '../../public/data/sections/Sections';
+import { Slide2 } from '../../public/data/sections/Sections';
 import SectionPrincipal from './landing/components/Sections/SectionPrincipal';
-
+import Link from 'next/link';
+import { IoMdArrowRoundUp } from "react-icons/io";
 
 export default function Landing() {
 
@@ -31,10 +27,16 @@ export default function Landing() {
         active={active}
         handleDesactive={handleDesactive}
       >
-          <Form/>
+        <Form/>
       </Popup>
+      <Link 
+        href={"#home"}
+        smooth={true}
+        className='fixed z-[100] bottom-5 right-5 bg-white/[.4] cursor-pointer p-2 rounded-full'>
+        <IoMdArrowRoundUp size={24} />
+      </Link>
       <main>
-        <section className='bg-[url(/img/Hero-Background.png)] bg-top bg-no-repeat bg-cover'>
+        <section id='home' className='bg-[url(/img/Hero-Background.png)] bg-top bg-no-repeat bg-cover'>
           <section className='bg-gradient-section1-bgs'>
             <NavBar handleActivePopup={handleActive}/>
             <SectionPrincipal handleActivePopup={handleActive} />
