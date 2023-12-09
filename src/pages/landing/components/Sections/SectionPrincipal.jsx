@@ -11,7 +11,10 @@ export default function SectionPrincipal({handleActivePopup}) {
   return (
     <div className='px-5 md:px-28 xl:px-40 pt-5 bg-gradient-section1-b-t flex flex-col items-center justify-center gap-8 relative z-0 overflow-hidden'>
         <h1 className='text-4xl normal-case text-center md:text-5xl xl:text-7xl'>{Slide1.title1}</h1>
-        <h1 className='text-4xl normal-case text-center md:text-5xl xl:text-7xl'>{Slide1.title2}</h1>
+        <h1 className='text-4xl normal-case text-center md:text-5xl xl:text-7xl'>
+            <span className='text-[#5befe6] drop-shadow-md'>{Slide1.title2_p}</span>
+            {Slide1.title2}
+        </h1>
         <div className='lg:px-40'>
             <P textCenter={true}>{Slide1.description}</P>
         </div>
@@ -57,28 +60,30 @@ export default function SectionPrincipal({handleActivePopup}) {
             />
         </div> */}
         <article className='bg-gradient-to-br from-[#0e193e]/[20%] to-[#10071c]/[20%] border-2 border-[#0e193e] p-10 rounded-lg grid grid-cols-1 gap-10'>
-            <div className='grid grid-cols-2 items-center justify-center'>
+            <ContainerGroupTexts className={``}>
+                <div className='-rotate-[25deg] text-center w-fit mx-auto'>
+                    <img
+                        className='hidden md:block mobile-animation h-72'
+                        src="/icons/megaphone.webp"
+                        alt="hero-phone"
+                    />
+                </div>
+                <GroupTexts
+                    title={"Fecha Límite: Únete antes del 14 de febrero a Sethor"}
+                    description={"No pierdas la oportunidad de unirte al club Sethor y acceder a beneficios exclusivos. Hasta el 14 de febrero de 2024, podrás ser parte de nuestra comunidad exclusiva. Aquellos que se unan después de esta fecha perderán la chance de obtener la insignia y disfrutar de beneficios exclusivos por fidelidad. ¡Únete hoy y sé parte de lo extraordinario!"}
+                />
+            </ContainerGroupTexts>
+            <ContainerGroupTexts>
                 <GroupTexts
                     title={"Descubre Beneficios Exclusivos: Únete al Club Sethor"}
                     description={"¡Sé parte del club Sethor y accede a beneficios exclusivos! Desde sorteos emocionantes hasta eventos VIP, nuestros miembros disfrutan de experiencias únicas. Ya sea como persona o empresa, únete a nosotros y desbloquea oportunidades especiales. Con la insignia distintiva, te destacarás en nuestra comunidad. ¡Únete ahora y descubre lo que te hemos preparado!"}
                 />
                 <img
-                    className='mobile-animation h-96'
+                    className='hidden md:block mobile-animation h-96'
                     src="/img/Hero-Image-Phone.svg"
                     alt="hero-phone"
                 />
-            </div>
-            <div className='grid grid-cols-2 items-center justify-center'>
-                <img
-                    className='mobile-animation h-96'
-                    src="/img/Hero-Image-Phone.svg"
-                    alt="hero-phone"
-                />
-                <GroupTexts
-                    title={"Fecha Límite: Únete antes del 14 de febrero a Sethor"}
-                    description={"No pierdas la oportunidad de unirte al club Sethor y acceder a beneficios exclusivos. Hasta el 14 de febrero de 2024, podrás ser parte de nuestra comunidad exclusiva. Aquellos que se unan después de esta fecha perderán la chance de obtener la insignia y disfrutar de beneficios exclusivos por fidelidad. ¡Únete hoy y sé parte de lo extraordinario!"}
-                />
-            </div>
+            </ContainerGroupTexts>
             
         </article>
     </div>
@@ -89,8 +94,16 @@ const GroupTexts = ({title, description, style}) => {
 
     return (
         <div className='flex flex-col gap-4'>
-            <h1 className='text-2xl font-bold'>{title}</h1>
-            <p>{description}</p>
+            <h1 className='text-2xl font-bold text-white'>{title}</h1>
+            <p className='text-gray-400'>{description}</p>
+        </div>
+    )
+}
+const ContainerGroupTexts = ({children, className}) => {
+
+    return (
+        <div className={`grid md:grid-cols-2 items-center justify-center ${className}`}>
+            {children}
         </div>
     )
 }

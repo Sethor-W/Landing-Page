@@ -2,7 +2,7 @@ export const NETSWORK = [
     {
         name: "Instagram",
         src: "/icons/Instagram.svg",
-        href: "https://www.instagram.com/sethor.we/",
+        href: "https://www.instagram.com/sethor_lt/",
     },
     {
         name: "Tiktok",

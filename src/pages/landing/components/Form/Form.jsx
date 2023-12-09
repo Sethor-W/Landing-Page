@@ -336,7 +336,7 @@ export default function Form() {
         try {
             const name = e.target.name.value;
             const email = e.target.email.value;
-            const country = e.target.country.value;
+            // const country = e.target.country.value;
             const referral = e.target.referral.value;
             const suggestion_opinion = e.target.suggestion_opinion.value;
 
@@ -368,16 +368,17 @@ export default function Form() {
                 throw new Error(error);
               }
             }
-            if (!name || !email || !country || !birthDate) {
-              const error = "Nombre, correo electrónico, fecha de nacimiento y país son obligatorios";
+            // if (!name || !email || !country || !birthDate) {
+            if (!name || !email) {
+              const error = "Nombre y correo electrónico son obligatorios";
               setError(error);
               throw new Error(error);
             }
-            if (!fingerprint && !face) {
-              const error = "Debe seleccionar su preferencia de pago";
-              setError(error);
-              throw new Error(error);
-            }
+            // if (!fingerprint && !face) {
+            //   const error = "Debe seleccionar su preferencia de pago";
+            //   setError(error);
+            //   throw new Error(error);
+            // }
             // if (!suggestion_opinion) {
             //   const error = "La sugerencia u opinion es un campo obligatorio";
             //   setError(error);
@@ -405,16 +406,21 @@ export default function Form() {
 
             const uniqueCode = await generateShortUniqueCode(6);
 
+            setLoading(true);
             await addDoc(collection(db, "user_wait_list"), {
                 name: name,
                 email: email,
-                birthDate: birthDate,
-                country: country,
+                // birthDate: birthDate,
+                birthDate: null,
+                // country: country,
+                country: null,
                 referral: referralUpperCase,
                 suggestion_opinion,
                 payment_preference: {
-                  fingerprint: fingerprint,
-                  face: face,
+                  // fingerprint: fingerprint,
+                  // face: face,
+                  fingerprint: null,
+                  face: null,
                 },
                 code: uniqueCode,
                 created: dateRegister,
@@ -423,12 +429,13 @@ export default function Form() {
             // await sendEmail(email, uniqueCode, name);
             setMail(email);
             setBirthDate("");
+            setLoading(false);
+            setStatusSendEmail(true);
         } catch (error) {
             console.error(error);
         }
 
         setChangeButton_Loading(false)
-
     };
 
     const handleActiveForm = () => {
@@ -463,7 +470,7 @@ export default function Form() {
               puedas acceder a los beneficios de la lista de espera. */}
               Muchas gracias por completar la encuesta, seras de los primeros en saber
               de nuestro lanzamiento, te enviaremos un correo con el codigo para que
-              puedas acceder a los beneficios de la lista de espera.
+              puedas acceder a los beneficios del club Sethor.
             </p>
             <button
               onClick={handleActiveForm}
@@ -510,7 +517,7 @@ export default function Form() {
               />
             </div>
 
-            <div>
+            {/* <div>
               <Label forHTML={"birthdate"}>Fecha de nacimiento</Label>
               <Input
                 type="text"
@@ -522,7 +529,7 @@ export default function Form() {
                 required={true}
               />
               <TextError>{errorDate}</TextError>
-            </div>
+            </div> */}
 
             <div>
               <Label forHTML={"email"}>Correo electrónico</Label>
@@ -535,7 +542,7 @@ export default function Form() {
               />
             </div>
 
-            <div>
+            {/* <div>
               <Label forHTML={"country"}>Tu país</Label>
               <select
                 className="bg-black/5 text-white/[.9] border border-[#898989] text-sm block w-full px-5 py-3 rounded-xl focus:outline-none"
@@ -555,7 +562,7 @@ export default function Form() {
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
             
             <div className="mt-5 text-gray-800 text-base">
               <h2 className="text-2xl font-bold">
@@ -606,7 +613,7 @@ export default function Form() {
             </div>
           </div>
           <hr className="my-8" />
-          <div>
+          {/* <div>
             <Label>Con cual prefieres pagar: </Label>
             <div className="flex flex-row items-center gap-7 mb-7">
               <OptionInput
@@ -620,7 +627,7 @@ export default function Form() {
                 state={face}
               />
             </div>
-          </div>
+          </div> */}
 
           <div>
             <Label forHTML={"suggestion_opinion"}>
@@ -630,7 +637,8 @@ export default function Form() {
           </div>
           
           <p className="text-white mt-8 mb-10 text-sm font-normal italic">
-            Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios.
+            {/* Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios. */}
+            Al enviar el formulario sera parte de la lista del Club Sethor para acceder a los beneficios.
           </p>
           {error && (
             <div className="mb-7">
