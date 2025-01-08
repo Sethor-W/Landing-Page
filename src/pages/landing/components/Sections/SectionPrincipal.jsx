@@ -6,6 +6,7 @@ import P from '../Text/P'
 import { Slide1 } from '../../../../../public/data/sections/Sections'
 import { TEXTS_BUTTONS } from '../../../../../public/data/buttons/TextLanding'
 import { BENEFICIOS } from '../../../../../public/data/sections/Beneficios'
+import Image from 'next/image'
 
 export default function SectionPrincipal({handleActivePopup}) {
   return (
@@ -50,15 +51,30 @@ export default function SectionPrincipal({handleActivePopup}) {
             ))}
         </CarruselContainer> */}
         <div class="relative w-full max-h-[90vh] justify-center items-center">
-            <img
+            {/* <img
                 class="rotate-animation absolute inset-0 w-full h-auto max-h-[50vh] my-10 md:max-h-[70vh] object-contain -z-[1] "
                 src="/img/Hero-Image-bg.svg"
                 alt="hero-bg"
-            />
-            <img
-                class="mobile-animation w-full max-h-[90vh] object-contain"
-                src="/img/Hero-Image-Phone.svg"
+            /> */}
+            {/* <img
+                class="mobile-animations w-fulls max-h-[90vh] object-contains"
+                src="/img/Hero-Image-Phone.png"
                 alt="hero-phone"
+            /> */}
+            <Image
+                className="rotate-animation absolute inset-0 w-full h-auto max-h-[50vh] my-10 top-1/4 sm:top-0 md:max-h-[70vh] object-contain -z-[1]"
+                src="/img/Hero-Image-bg.svg"
+                alt="hero-bg"
+                layout="responsive"
+                width={1200}
+                height={800}
+            />
+            <Image
+                className="mobile-animation w-full h-[90vh] object-contain"
+                src="/img/Hero-Image-Phone.png"
+                alt="hero-phone"
+                width={1000}  // Establece un tamaño adecuado para la imagen
+                height={600}
             />
         </div>
 
