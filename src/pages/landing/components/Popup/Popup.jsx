@@ -10,10 +10,10 @@ export default function Popup({children, active, handleDesactive}) {
         <div className='max-h-[90vh]'>
             {/* <!-- Modal content --> */}
             <div
-                className="relative z-40 rounded-[1.9rem] shadow-2xl bg-[url(/img/Hero-Background.png)]  bg-no-repeat bg-top bg-cover"
+                className="relative z-40 rounded-[1.9rem] shadow-2xl bg-[url(/img/Hero-Background.png)] bg-no-repeat bg-top bg-cover border border-[#fff]/30"
             >
-                <div className='bg-gradient-section1-bgs rounded-[1.9rem]'>
-                    <div className='bg-gradient-section1-b-t px-5 py-10 lg:p-20 rounded-[1.9rem]'>
+                <div className='bg-gradient-section1-bgs rounded-[1.9rem] '>
+                    <div className='bg-gradient-section1-b-t px-5 py-10 lg:p-20 rounded-[1.9rem] '>
                         <button
                             onClick={handleDesactive}
                             className="absolute top-10 right-5 lg:top-11 lg:right-11 mr-auto bg-transparent w-4 h-4"

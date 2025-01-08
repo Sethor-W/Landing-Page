@@ -16,7 +16,9 @@ export default function SectionPrincipal({handleActivePopup}) {
             {Slide1.title2}
         </h1>
         <div className='lg:px-40'>
-            <P textCenter={true}>{Slide1.description}</P>
+            <P
+                textCenter={true}
+            >{Slide1.description}</P>
         </div>
         <div className="options flex flex-row gap-3">
             {/* <ButtonActivePopup
@@ -36,7 +38,7 @@ export default function SectionPrincipal({handleActivePopup}) {
         </div>
         {/* <div className='h-[1px] mt-20 bg-white/[.5] w-full'></div> */}
         {/* <h1 className="text-3xl mt-20 border-4 border-white/[.5] border-l-transparent border-r-transparent rounded-3xl p-4">Beneficios</h1> */}
-        <CarruselContainer>
+        {/* <CarruselContainer>
             {BENEFICIOS.map((data, index)=>(
                 <CarruselCart
                     key={index}
@@ -46,20 +48,21 @@ export default function SectionPrincipal({handleActivePopup}) {
                     srcHover={data.srcHover}
                 />
             ))}
-        </CarruselContainer>
-        {/* <div class="relative w-full">
+        </CarruselContainer> */}
+        <div class="relative w-full max-h-[90vh] justify-center items-center">
             <img
-                className="rotate-animation absolute inset-0 w-full h-full -z-[1] md:top-28 md:h-[40vw]"
+                class="rotate-animation absolute inset-0 w-full h-auto max-h-[50vh] my-10 md:max-h-[70vh] object-contain -z-[1] "
                 src="/img/Hero-Image-bg.svg"
                 alt="hero-bg"
             />
             <img
-                className='mobile-animation w-full md:h-[60vw]'
+                class="mobile-animation w-full max-h-[90vh] object-contain"
                 src="/img/Hero-Image-Phone.svg"
                 alt="hero-phone"
             />
-        </div> */}
-        <article className='bg-gradient-to-br from-[#0e193e]/[20%] to-[#10071c]/[20%] border-2 border-[#0e193e] p-10 rounded-lg grid grid-cols-1 gap-10'>
+        </div>
+
+        {/* <article className='bg-gradient-to-br from-[#0e193e]/[20%] to-[#10071c]/[20%] border-2 border-[#0e193e] p-10 rounded-lg grid grid-cols-1 gap-10'>
             <ContainerGroupTexts className={``}>
                 <div className='-rotate-[25deg] text-center w-fit mx-auto'>
                     <img
@@ -85,7 +88,7 @@ export default function SectionPrincipal({handleActivePopup}) {
                 />
             </ContainerGroupTexts>
             
-        </article>
+        </article> */}
     </div>
   )
 }

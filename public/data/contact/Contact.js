@@ -1,1 +1,1 @@
-export const MAIL = "info@sethor.tech"
+export const MAIL = "soporte@sethor.tech"

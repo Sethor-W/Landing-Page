@@ -5,12 +5,15 @@ import Form from './landing/components/Form/Form';
 import NavBar from './landing/components/NavBar/NavBar';
 import SectionVideo from './landing/components/Sections/SectionVideo';
 import Footer from './landing/components/Footer/Footer';
-import { Contact, Slide2 } from '../../public/data/sections/Sections';
+import { Contact, Slide2, Slide3 } from '../../public/data/sections/Sections';
 import SectionPrincipal from './landing/components/Sections/SectionPrincipal';
 import Link from 'next/link';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TEXTS_BUTTONS } from '../../public/data/buttons/TextLanding';
 import { MAIL } from '../../public/data/contact/Contact';
+import { TEXTS_OLD } from '../../public/data/sections/Sections_Old';
+import P from './landing/components/Text/P';
+import ButtonActivePopup from './landing/components/Buttons/ButtonActivePopup/ButtonActivePopup';
 
 export default function Landing() {
 
@@ -70,26 +73,28 @@ export default function Landing() {
             <SectionPrincipal handleActivePopup={handleActivePopupForm} />
           </section>
         </section>
+        <SectionVideo
+          title={Slide2.title}
+          description={Slide2.description}
+          handleActivePopup={handleActivePopupForm}
+        />
         <section className='bg-[url(/img/Secion-3-Background.png)] bg-no-repeat bg-cover'>
-          <SectionVideo
-            title={Slide2.title}
-            description={Slide2.description}
-          />
-          {/* <section className='px-5 md:px-28 xl:px-40 py-[7.5rem] bg-gradient-section1-bg'>
+          <section className='px-5 md:px-28 xl:px-40 py-[7.5rem] bg-gradient-section1-bg'>
             <div className='bg-black/50 rounded-[2rem] py-10 px-5 md:p-16 lg:flex lg:flex-row lg:items-center lg:gap-12'>
               <div className='flex flex-col items-start justify-center gap-8 lg:w-[80%] xl:w-[50%]'>
-                <h1 className='text-4xl normal-case text-left'>{TEXTS.Slide3.title}</h1>
-                <P>{TEXTS.Slide3.description}</P>
+                <h1 className='text-4xl normal-case text-left'>{Slide3.title}</h1>
+                <P>{Slide3.description}</P>
                 <div className="options flex flex-row gap-3">
                   <ButtonActivePopup
                     onClick={handleActivePopupForm}
                     text={TEXTS_BUTTONS.Waitlist}
                   />
+                  
                   <Link
-                      className='text-white text-lg font-bold  py-4 px-7 rounded-2xl'
-                      href={'#features'}
+                      className="flex justify-center items-center text-[var(--background-button-action-rgb)] text-lg font-bold py-4 px-7 rounded-2xl border border-[var(--background-button-action-rgb)] bg-transparent"
+                      href="#features"
                   >
-                    {TEXTS_BUTTONS.LearnMore}
+                      {TEXTS_BUTTONS.LearnMore}
                   </Link>
                 </div>
               </div>
@@ -97,7 +102,7 @@ export default function Landing() {
                 <img className='mx-auto xl:h-[50%]' src="/logo/Isotipo.svg" alt="Sethor" />
               </div>
             </div>
-          </section> */}
+          </section>
         </section>
       </main>
       <Footer />

@@ -24,7 +24,7 @@ export default function NavBar({handleActivePopupForm, handleActivePopupContact}
         <div class="p-5 px-5 md:px-28 xl:px-40 flex  md:gap-14 items-center justify-between mx-auto ">
           <Link href={"/"} smooth={true} className="flex items-center mr-2">
             <img
-              className="w-40"
+              className="w-28"
               src="/logo/Sethor-Logo.svg"
               alt="Sethor"
             />
@@ -61,7 +61,7 @@ export default function NavBar({handleActivePopupForm, handleActivePopupContact}
                       smooth={true}
                       onClick={handleActive}
                       offset={-100}
-                      class="block py-2 pl-3 pr-4 rounded hover:text-violet-500 md:hover:bg-transparent md:p-0 md:text-base"
+                      class="block py-2 pl-3 pr-4 rounded hover:text-[#5BEFE6] md:hover:bg-transparent md:p-0 md:text-base"
                     >
                       {data.label}
                     </Link>
@@ -73,7 +73,7 @@ export default function NavBar({handleActivePopupForm, handleActivePopupContact}
                       smooth={true}
                       onClick={handleActivePopupContact}
                       offset={-100}
-                      class="block py-2 pl-3 pr-4 rounded hover:text-violet-500 md:hover:bg-transparent md:p-0 md:text-base"
+                      class="block py-2 pl-3 pr-4 rounded hover:text-[#5BEFE6] md:hover:bg-transparent md:p-0 md:text-base"
                     >
                       {data.label}
                     </Link>

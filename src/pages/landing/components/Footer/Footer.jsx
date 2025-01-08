@@ -8,22 +8,25 @@ import { MAIL } from '../../../../../public/data/contact/Contact'
 export default function Footer() {
   return (
     <footer className='bg-black px-5 md:px-28 xl:px-40 py-12'>
-      {/* <div className='flex flex-col lg:items-center lg:px-40 xl:px-60 items-start justify-center gap-3 text-center'>
+      <div className='flex flex-col lg:items-center lg:px-40 xl:px-60 items-start justify-center gap-3 text-center'>
         <h1 className='text-4xl capitalize text-left'>{Contact.title}</h1>
-        <p className={`text-left text-[var(--letter-sub-color)] md:text-lg lg:text-center`}>{Contact.description}</p>
-        <Link
+        <p className={`text-left text-[var(--letter-sub-color)] md:text-lg lg:text-center`}>
+          {Contact.description}
+          <Link href={`mailto:${MAIL}`} className='text-[#5BEFE6]'>{MAIL}</Link>
+        </p>
+        {/* <Link
           id='contact'
           className='text-black text-lg font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action py-4 px-7 mt-7 rounded-2xl'
           href={`mailto:${MAIL}`}
           target='_blank'
         >
           {TEXTS_BUTTONS.Contact}
-        </Link>
+        </Link> */}
       </div>
-      <hr className='my-7' /> */}
+      <hr className='my-7 border-white border-opacity-20' />
       <div className='flex flex-col lg:grid lg:grid-cols-3 lg:items-center lg:justify-between items-start justify-center gap-10'>
         <img
-          className='w-40 text-sm'
+          className='w-24 text-sm'
           src="/logo/Sethor-Logo.svg"
           alt="Sethor"
         />
@@ -35,7 +38,7 @@ export default function Footer() {
               href={data.href}
               target='_blank'
             >
-              <img src={data.src} alt={data.name} />
+              <img className='h-5' src={data.src} alt={data.name} />
             </Link>
           ))}
         </div>

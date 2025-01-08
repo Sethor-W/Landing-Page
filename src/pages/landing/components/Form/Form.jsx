@@ -209,16 +209,16 @@ const countries = [
     "Zimbabue",
 ];
 
-const imgLogo = <div className="w-full">
+const imgLogo = <div className="w-full ">
                   <img
-                    className="h-16 text-center lg:h-24 lg:mx-auto"
+                    className="h-10 text-center lg:h-16 lg:ml-auto"
                     src="/logo/Sethor-Logo.svg"
                     alt="Sethor"
                   />
                 </div>
 const imgLogoStatusSendEmail = <div className="w-full">
                   <img
-                    className="h-16 text-center lg:h-24"
+                    className="h-10 text-center lg:h-16"
                     src="/logo/Sethor-Logo.svg"
                     alt="Sethor"
                   />
@@ -477,7 +477,7 @@ export default function Form() {
               className='text-black text-xl font-bold bg-[var(--background-button-action-rgb)] box-shadow-button-action px-10 py-5 text-center w-full rounded-3xl'
             >
               {/* Agregar otra persona a la lista de espera */}
-              Unir a otra persona al club Sethor
+              Unir a otra persona a Sethor
             </button>
             <SectionShare
               link={'https://www.sethor.tech/'}
@@ -612,7 +612,7 @@ export default function Form() {
               )}
             </div>
           </div>
-          <hr className="my-8" />
+          <hr className="my-8 border-white border-opacity-30" />
           {/* <div>
             <Label>Con cual prefieres pagar: </Label>
             <div className="flex flex-row items-center gap-7 mb-7">
@@ -638,7 +638,7 @@ export default function Form() {
           
           <p className="text-white mt-8 mb-10 text-sm font-normal italic">
             {/* Al enviar el formulario se suscribira a la lista de espera de Sethor para acceder a los beneficios. */}
-            Al enviar el formulario sera parte de la lista del Club Sethor para acceder a los beneficios.
+            Al enviar el formulario seras parte de la lista exclusiva de Sethor para acceder a beneficios.
           </p>
           {error && (
             <div className="mb-7">

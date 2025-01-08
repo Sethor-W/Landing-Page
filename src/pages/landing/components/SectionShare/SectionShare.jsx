@@ -5,11 +5,18 @@ export default function SectionShare({link, mail}) {
 
   const [copied, setCopied] = useState(false);
 
-  const message = `Únete a Sethor y obtén beneficios exclusivos usando mi correo como referencia: [${mail}]. ¡Lo mejor está en Sethor!`
+  const message = `Únete a Sethor y obtén beneficios exclusivos usando mi correo como referencia: ${mail} ¡Lo mejor está en Sethor!`
+
+  const messageCopy = `
+    Únete a Sethor y obtén beneficios exclusivos usando mi correo como referencia: ${mail}
+    ¡Lo mejor está en Sethor!
+
+    ${link}
+  `
 
   const handleCopyClick = () => {
     const textArea = document.createElement('textarea');
-    textArea.value = link;
+    textArea.value = messageCopy;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');

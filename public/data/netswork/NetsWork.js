@@ -12,7 +12,7 @@ export const NETSWORK = [
     {
         name: "Youtube",
         src: "/icons/Youtube.svg",
-        href: "https://www.youtube.com/@Sethor-tech/",
+        href: "https://www.youtube.com/@Sethor_LT/",
     },
     {
         name: "Linkedin",
