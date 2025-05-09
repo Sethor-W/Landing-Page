@@ -30,7 +30,12 @@ export default function Footer() {
           src="/logo/Sethor-Logo.svg"
           alt="Sethor"
         />
-        <p className='text-[var(--letter-sub-color)] lg:text-center'>© 2023 Sethor. All Rights Reserved.</p>
+        <div className='text-[var(--letter-sub-color)] lg:text-center'>
+          <p>© 2023 Sethor. All Rights Reserved.</p>
+          <Link href="/terms-and-conditions" className='text-[#5BEFE6] hover:underline'>
+            Términos y Condiciones
+          </Link>
+        </div>
         <div className="[flex flex-row gap-5] flex flex-wrap gap-5 lg:justify-end">
           {NETSWORK.map((data, index)=>(
             <Link
