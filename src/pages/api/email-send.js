@@ -1,4 +1,4 @@
-import { emailHtml, mailOptions, remplazarMarcadores, transporter } from "@/config/email";
+import { emailHtml, mailOptions, remplazarMarcadores, transporter } from "../../config/email";
 
 const handle = async (req, res) => {
     if (req.method === 'POST') {
