@@ -10,6 +10,7 @@ export default function TermsAndConditions() {
                 <meta property="og:title" content="Términos y Condiciones | Sethor" key="title" />
                 <meta property="og:description" content="Términos y condiciones de uso de los servicios de Sethor" />
                 <meta property="og:image" content="https://www.sethor.tech/logo/Logotipo.svg" />
+                <link rel="canonical" href="https://www.sethor.tech/terms-and-conditions" />
             </Head>
 
             <main className="min-h-screen bg-[var(--background-color)] py-20 px-5 md:px-28 xl:px-40">
@@ -23,6 +24,9 @@ export default function TermsAndConditions() {
                         <h2 className="text-2xl font-semibold mb-4">1. Introducción</h2>
                         <p className="text-[var(--letter-sub-color)] mb-4">
                             Bienvenido a Sethor. Al acceder o utilizar nuestros servicios, usted acepta estar sujeto a estos Términos y Condiciones. Lea detenidamente este documento antes de utilizar nuestra plataforma.
+                        </p>
+                        <p className="text-[var(--letter-sub-color)] mb-4">
+                            Nuestros servicios están dirigidos exclusivamente a mayores de 18 años. No recopilamos ni procesamos información de menores de edad. Cumplimos con todas las regulaciones de protección de datos y privacidad requeridas.
                         </p>
                     </section>
 
@@ -63,13 +67,15 @@ export default function TermsAndConditions() {
                     </section>
 
                     <section className="mb-10">
-                        <h2 className="text-2xl font-semibold mb-4">5. Protección de Datos</h2>
+                        <h2 className="text-2xl font-semibold mb-4">5. Protección de Datos y Privacidad</h2>
                         <p className="text-[var(--letter-sub-color)] mb-4">
                             Utilizamos tecnología de <a href="https://tech5.ai/t5-airsnap/" target="_blank" rel="noopener noreferrer" className="text-[var(--background-button-action-rgb)] hover:underline">Tech5 (T5-AirSnap)</a> para proteger sus datos biométricos. Al registrarse, usted:
                         </p>
                         <ul className="list-disc pl-5 mt-2 space-y-2">
                             <li>Autoriza el uso de sus datos solo para autenticación y pagos</li>
                             <li>Reconoce que sus datos se almacenan de forma segura y encriptada</li>
+                            <li>Acepta que no recopilamos datos de menores de edad</li>
+                            <li>Reconoce que todos los datos personales son tratados según la Ley de Protección de Datos</li>
                         </ul>
                     </section>
 
