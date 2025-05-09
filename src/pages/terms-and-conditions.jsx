@@ -32,7 +32,7 @@ export default function TermsAndConditions() {
                             Sethor ofrece una plataforma tecnológica que incluye:
                         </p>
                         <ul className="list-disc pl-5 mt-2 space-y-2">
-                            <li><strong>Sethor App:</strong> Solución de pagos biométricos seguros integrada con Transbank Chile (One Click)</li>
+                            <li><strong>Sethor:</strong> Solución de pagos biométricos seguros integrada con Transbank Chile (One Click)</li>
                             <li><strong>Sethor Business:</strong> Sistema de gestión integral para restaurantes con control de inventario, ventas y pagos</li>
                         </ul>
                     </section>
